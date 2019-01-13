@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>回归博客</title>
+      <link href="/hui-gui-bo-ke/"/>
+      <url>/hui-gui-bo-ke/</url>
+      
+        <content type="html"><![CDATA[<h1 id="今天起，正式回归博客啦！！！"><a href="#今天起，正式回归博客啦！！！" class="headerlink" title="今天起，正式回归博客啦！！！"></a>今天起，正式回归博客啦！！！</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>你好 Hexo</title>
       <link href="/hello-world/"/>
       <url>/hello-world/</url>
