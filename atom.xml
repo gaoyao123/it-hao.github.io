@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-01-13T03:20:45.981Z</updated>
+  <updated>2019-01-13T07:59:45.815Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://it-hao.github.io/hui-gui-bo-ke/"/>
     <id>https://it-hao.github.io/hui-gui-bo-ke/</id>
     <published>2019-01-13T03:16:05.000Z</published>
-    <updated>2019-01-13T03:20:45.981Z</updated>
+    <updated>2019-01-13T07:59:45.815Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,8 @@
       
         
         
-          &lt;h1 id=&quot;今天起，正式回归博客啦！！！&quot;&gt;&lt;a href=&quot;#今天起，正式回归博客啦！！！&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;这是我正式搭建好博客之后自己写的第一篇文章，因为最近事情比较多，帮老师写专利，调代码，准备期末考试，但是还是在百忙之中，抽取了一丁点的时间，按照热心网友给出的模板，自己搭了一个简单的博客，也了却了我的的一桩心事。&lt;/p&gt;
+&lt;h2 id=&quot;正式回归博客啦！！！&quot;&gt;&lt;a
         
       
     
@@ -38,6 +39,8 @@
       <category term="随笔" scheme="https://it-hao.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
+      <category term="博客" scheme="https://it-hao.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
   </entry>
   
   <entry>
@@ -45,7 +48,7 @@
     <link href="https://it-hao.github.io/hello-world/"/>
     <id>https://it-hao.github.io/hello-world/</id>
     <published>2019-01-07T15:25:00.000Z</published>
-    <updated>2019-01-12T09:01:10.450Z</updated>
+    <updated>2019-01-13T07:29:05.430Z</updated>
     
     <summary type="html">
     
