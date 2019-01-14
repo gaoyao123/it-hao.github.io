@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-01-14T07:45:37.805Z</updated>
+  <updated>2019-01-14T09:27:40.003Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <author>
@@ -17,16 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>20190114154537</title>
-    <link href="https://it-hao.github.io/20190114154537/"/>
-    <id>https://it-hao.github.io/20190114154537/</id>
-    <published>2019-01-14T07:45:37.000Z</published>
-    <updated>2019-01-14T07:45:37.805Z</updated>
+    <title>0-1背包</title>
+    <link href="https://it-hao.github.io/0-1-bei-bao/"/>
+    <id>https://it-hao.github.io/0-1-bei-bao/</id>
+    <published>2019-01-14T07:50:26.000Z</published>
+    <updated>2019-01-14T09:27:40.003Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;p&gt;背包问题是本科时候竞赛经常遇到的一个问题，包括0-1背包、完全背包问题、多重背包问题，今天正好准备算法期末考试，就此机会回忆一下0-1背包问题。&lt;/p&gt;
+&lt;h2 id=&quot;0-1-背包问题&quot;&gt;&lt;a href=&quot;#0-1-背包问题&quot; class=&quot;headerlink&quot;
+        
+      
+    
     </summary>
     
+      <category term="c++" scheme="https://it-hao.github.io/categories/c/"/>
+    
+      <category term="算法" scheme="https://it-hao.github.io/categories/c/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://it-hao.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

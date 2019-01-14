@@ -4,13 +4,27 @@
   
     
     <entry>
-      <title>20190114154537</title>
-      <link href="/20190114154537/"/>
-      <url>/20190114154537/</url>
+      <title>0-1背包</title>
+      <link href="/0-1-bei-bao/"/>
+      <url>/0-1-bei-bao/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>背包问题是本科时候竞赛经常遇到的一个问题，包括0-1背包、完全背包问题、多重背包问题，今天正好准备算法期末考试，就此机会回忆一下0-1背包问题。</p><h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><h3 id="1、问题描述"><a href="#1、问题描述" class="headerlink" title="1、问题描述"></a>1、问题描述</h3><p>有N件物品，和一个容量为V的背包，第i件物品的费用是c[i]，价值是w[i],问将哪些物品装入背包可使价值总和最大。<br>注意：这是最基本的背包问题，特点就是每件物品仅有意见，可以选择放还是不放。</p><h3 id="2、状态转移方程"><a href="#2、状态转移方程" class="headerlink" title="2、状态转移方程"></a>2、状态转移方程</h3><pre><code>f[i][v] = max{f[i-1][v],f[i-1][v-c[i]] + w[i]}**含义就是：将前i件物品放入容量为v的背包汇总**</code></pre><p><strong>基本所有的背包问题都是由这个方程演变过来的。</strong><br>这个方程可以这样来理解：将前 i 件物品放入容量为 v 的背包中”这个子问题，若只考虑第 i个物品的策略（放或不放），那么就可以转化为一个只牵扯前i-1件物品的问题。<br><strong>（1）如果不放第i件物品</strong>：那么问题就转化为“前 i-1 件物 品放入容量为 v 的背包中”，价值为 f[i-1][v]；<br><strong>（2）如果放第i件物品</strong>：那么问题就转化为“前 i-1 件物品放入剩下的容量为 v-c[i]的背包中”，此时能获得的最大价值就是 f[i-1][v-c[i]]再加上通过放入第 i 件物品获得的价值w[i]。<br><strong>请注意：</strong><br>在最优解的背包问题中，事实上有两种不太相同的问法，一种是要求“恰好装满背包时”的最优解，有的则是没有要求必须将背包装满，区别这种问法的实现方法就是在初始化的时候有所不同。<br><strong>（1）第一种：</strong>要求恰好装满背包，那么在初始化时除了 f[0]为 0 其它 f[1..V]均设为 -∞。<br><strong>（2）第二种：</strong>没要求恰好装满背包，只希望价格大，初始化时应该f[1..V]均设为0。</p><h3 id="3、实例"><a href="#3、实例" class="headerlink" title="3、实例"></a>3、实例</h3><p><strong>问题描述：</strong> 已知知道了N块石头的体积和价值，有一个最多能装体积为V的石头的袋子，从N块石头中找出一些石头放在袋子里使得总价值最大，求出最大价值。</p><pre><code>#include&lt;iostream&gt;using namespace std;#include&lt;string.h&gt;struct A{    int val;    //价值    int v;        //体积}E[1011];int max(int a,int b){    return a&gt;b?a:b;}int main(){    int T;    int dp[1011];        int N,V;    scanf(&quot;%d&quot;,&amp;T);    while(T--)    {        scanf(&quot;%d%d&quot;,&amp;N,&amp;V);        for(int i=1;i&lt;=N;i++)            scanf(&quot;%d&quot;,&amp;E[i].val);        for( i=1;i&lt;=N;i++)            scanf(&quot;%d&quot;,&amp;E[i].v);        memset(dp,0,sizeof(dp)); //如果这里问的是问恰好装满背包，则不能这样初始化。        for( i=1;i&lt;=N;i++)            for(int l=V;l&gt;=E[i].v;l--)                dp[l]=max(dp[l],dp[l-E[i].v+E[i].val]);            cout&lt;&lt;dp[V];    }    return 0;}</code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> c++ </category>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
       
     </entry>
     
