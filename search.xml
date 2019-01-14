@@ -13,12 +13,18 @@
       
       <categories>
           
-          <category> c++ </category>
-          
           <category> 算法 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 0-1背包 </tag>
+            
+            <tag> c++ </tag>
+            
+        </tags>
       
     </entry>
     
