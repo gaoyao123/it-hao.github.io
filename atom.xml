@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-01-14T11:55:26.156Z</updated>
+  <updated>2019-01-15T09:26:45.574Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++试卷</title>
+    <link href="https://it-hao.github.io/c-bian-cheng-ti/"/>
+    <id>https://it-hao.github.io/c-bian-cheng-ti/</id>
+    <published>2019-01-15T07:34:47.000Z</published>
+    <updated>2019-01-15T09:26:45.574Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;&lt;br&gt;这是2018年本科生c++考试题目，老师让我出的，学弟学妹向我抱怨题目很难，记录一下，来年作参考，哈哈哈！！！&lt;br&gt;&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;编程题&quot;&gt;&lt;a href=&quot;#编程题&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="作业" scheme="https://it-hao.github.io/categories/%E4%BD%9C%E4%B8%9A/"/>
+    
+    
+      <category term="c++" scheme="https://it-hao.github.io/tags/c/"/>
+    
+      <category term="c" scheme="https://it-hao.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>0-1背包</title>
@@ -77,7 +107,7 @@
     <link href="https://it-hao.github.io/hello-world/"/>
     <id>https://it-hao.github.io/hello-world/</id>
     <published>2019-01-07T15:25:00.000Z</published>
-    <updated>2019-01-13T07:29:05.430Z</updated>
+    <updated>2019-01-14T12:04:39.843Z</updated>
     
     <summary type="html">
     
