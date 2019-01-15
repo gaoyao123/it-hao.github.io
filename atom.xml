@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-01-15T14:07:29.960Z</updated>
+  <updated>2019-01-15T15:02:06.059Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <author>
@@ -21,11 +21,18 @@
     <link href="https://it-hao.github.io/c-bian-cheng-ti/"/>
     <id>https://it-hao.github.io/c-bian-cheng-ti/</id>
     <published>2019-01-15T07:34:47.000Z</published>
-    <updated>2019-01-15T14:07:29.960Z</updated>
+    <updated>2019-01-15T15:02:06.059Z</updated>
     
     <summary type="html">
     
-      &lt;blockquote&gt;&lt;br&gt;这是2018年本科生c++考试题目，老师让我出的，学弟学妹向我抱怨题目很难，记录一下，来年作参考，哈哈哈！！！&lt;br&gt;&lt;/blockquote&gt;
+      
+      
+        
+        
+          &lt;p&gt;这是2018年本科生c++考试题目，老师让我出的，学弟学妹向我抱怨题目很难，记录一下，来年作参考，哈哈哈！！！&lt;/p&gt;
+&lt;h2 id=&quot;编程题&quot;&gt;&lt;a href=&quot;#编程题&quot; class=&quot;headerlink&quot; title=&quot;编程题&quot;&gt;&lt;/a&gt;编程题&lt;/h2&gt;&lt;h3
+        
+      
     
     </summary>
     
@@ -33,8 +40,6 @@
     
     
       <category term="c++" scheme="https://it-hao.github.io/tags/c/"/>
-    
-      <category term="c" scheme="https://it-hao.github.io/tags/c/"/>
     
   </entry>
   
