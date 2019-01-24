@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SR数据处理, Java,Python,Computer Vision,Machine Learning,Deep Learning">
+    <meta name="description" content="在做SR实验中，因为网络深度，显存较小等问题，必须对图片进行处理，以便能够得到更好的实验结果。
+SR数据处理1、图片多尺度处理这里主要的思想是：
+
+将尺度大于 512×512 的图片按照0.5.-&amp;gt;06-&amp;gt;···1.0的尺度分别">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SR数据处理 | 小艾博客</title>
+    <link rel="icon" type="image/png" href="/pig4.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/pig4.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">小艾博客</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>文章标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>文章分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>文章归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>小艾</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>膜拜大佬</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/pig4.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小艾博客</div>
+        <div class="logo-desc">
+            
+            优秀的人生是孤独的
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                文章标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                文章分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                文章归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                小艾
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                膜拜大佬
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
+    <i class="fa fa-heart"></i>
+</a>
+
+<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+ 
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+		<i class="fa fa-qq"></i>
+</a>
+
+<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+    <i class="fa fa-weibo"></i>
+</a>
+
+
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+
+
+
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        SR数据处理
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/pytorch/" target="_blank">
+                    <span class="chip bg-color">pytorch</span>
+                </a>
+                
+                <a href="/tags/python/" target="_blank">
+                    <span class="chip bg-color">python</span>
+                </a>
+                
+                <a href="/tags/SR/" target="_blank">
+                    <span class="chip bg-color">SR</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                <!--<span class="post-cate" style="margin-right: 0px">-->
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/SR/" class="post-category" target="_blank">
+                        SR
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-24
+                </span>
+				
+				
+                    <span id="busuanzi_container_page_pv" class="post-read">
+                    <i class="fa fa-eye fa-fw"></i>阅读 <span id="busuanzi_value_page_pv"></span>
+				
+            </span></div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>在做SR实验中，因为网络深度，显存较小等问题，必须对图片进行处理，以便能够得到更好的实验结果。</p>
+<h2 id="SR数据处理"><a href="#SR数据处理" class="headerlink" title="SR数据处理"></a>SR数据处理</h2><h3 id="1、图片多尺度处理"><a href="#1、图片多尺度处理" class="headerlink" title="1、图片多尺度处理"></a>1、图片多尺度处理</h3><p><strong>这里主要的思想是：</strong></p>
+<ul>
+<li><p>将尺度大于 512×512 的图片按照0.5.-&gt;06-&gt;···1.0的尺度分别保存到单独的文件夹中；</p>
+</li>
+<li><p>将尺度小于 512×512 的图片单独保存在一个文件夹中；</p>
+</li>
+</ul>
+<p><strong>代码如下：</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">classfily_image</span><span class="token punctuation">(</span>image_dir<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    按照图片大小将其分类到不同尺度的文件夹中
+    """</span>
+    file_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true"># 得到所有图片的绝对路径</span>
+    filenames_from_dir<span class="token punctuation">(</span>image_dir<span class="token punctuation">,</span> file_names<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> file_names<span class="token punctuation">:</span>
+        image <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 分别获得文件夹的根目录，图片名，图片的后缀名</span>
+        image_dir<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> exten <span class="token operator">=</span> get_filePath_Name_Ext<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># crop_dir1 = save_path+'\\'+filename+'cropxy_'+str(x)+'_'+str(y)+exten</span>
+        image_size <span class="token operator">=</span> min<span class="token punctuation">(</span>image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># image_size &lt; 512的单独进行处理，然后image_size > 512 的将他们的尺度分别缩小为0.5~1倍</span>
+        <span class="token keyword">if</span> image_size <span class="token operator">&lt;</span> <span class="token number">512</span><span class="token punctuation">:</span>
+            image_save_dir <span class="token operator">=</span> image_dir <span class="token operator">+</span> <span class="token string">"\\small_size"</span>
+            create_new_folder<span class="token punctuation">(</span>image_save_dir<span class="token punctuation">)</span>
+            image_save_name <span class="token operator">=</span> image_save_dir <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> filename <span class="token operator">+</span> <span class="token string">"_small_size"</span> <span class="token operator">+</span> exten
+            <span class="token comment" spellcheck="true"># save image</span>
+            image<span class="token punctuation">.</span>save<span class="token punctuation">(</span>image_save_name<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># scale = round(512 / image_size, 1) + 0.1 # 这里不能四舍五入</span>
+            scale <span class="token operator">=</span> <span class="token punctuation">(</span>int<span class="token punctuation">(</span><span class="token number">5120</span><span class="token operator">/</span>image_size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span> <span class="token operator">+</span> <span class="token number">0.1</span>
+            <span class="token comment" spellcheck="true"># 图片的大小是 >512  and  &lt;1024</span>
+            <span class="token keyword">if</span> scale <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                <span class="token comment" spellcheck="true"># for x in np.arange(max(scale,0.5), 1, 0.1): # 容易出现问题</span>
+                <span class="token keyword">for</span> x <span class="token keyword">in</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>max<span class="token punctuation">(</span>scale<span class="token punctuation">,</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1.01</span><span class="token punctuation">,</span><span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    downtrans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">(</span>int<span class="token punctuation">(</span>round<span class="token punctuation">(</span>image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>int<span class="token punctuation">(</span>round<span class="token punctuation">(</span>image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span>
+                    new_image <span class="token operator">=</span> downtrans<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
+                    image_save_dir <span class="token operator">=</span> image_dir <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">"_size"</span>
+                    create_new_folder<span class="token punctuation">(</span>image_save_dir<span class="token punctuation">)</span>
+                    image_save_name <span class="token operator">=</span> image_save_dir <span class="token operator">+</span> <span class="token string">"\\"</span> <span class="token operator">+</span> filename <span class="token operator">+</span><span class="token string">"_"</span><span class="token operator">+</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span> <span class="token string">"_size"</span> <span class="token operator">+</span> exten
+                    <span class="token comment" spellcheck="true"># save</span>
+                    new_image<span class="token punctuation">.</span>save<span class="token punctuation">(</span>image_save_name<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2、图片切块"><a href="#2、图片切块" class="headerlink" title="2、图片切块"></a>2、图片切块</h3><p><strong>这里主要是采用了两种方法：</strong></p>
+<ul>
+<li><p><strong>五分法：</strong>将所有图片切成5块，主要想法是切成 512×512 大小，在论文中，4倍下采样为 128×128 ，通过算法恢复成为 原始大小；也可以切成 384×384 大小，3倍下采样为 128×128 ；或者切成 256×256 大小，2倍下采样为 128×128。</p>
+</li>
+<li><p><strong>滑窗法：</strong>这里采用的就是 stride 来进行一定的滑动，以便获得更多的图片，但是在之前实验中表明这样的效果不是很好，但是为了得到一整图片的整体特征的话，这种方法得到的图片还是有用的，但是这样的label不需要很多。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">crop_fiveImages</span><span class="token punctuation">(</span>image_dir<span class="token punctuation">,</span>width<span class="token punctuation">,</span>height<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    五分法：
+    """</span>
+    image_save_dir <span class="token operator">=</span> image_dir <span class="token operator">+</span> <span class="token string">'\\edges-'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>width<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 保存边缘图片</span>
+    image_save_dir2 <span class="token operator">=</span> image_dir <span class="token operator">+</span> <span class="token string">'\\centers-'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>width<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 保存中间图片</span>
+    create_new_folder<span class="token punctuation">(</span>image_save_dir<span class="token punctuation">)</span>
+    create_new_folder<span class="token punctuation">(</span>image_save_dir2<span class="token punctuation">)</span>
+    file_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    cropLen <span class="token operator">=</span> <span class="token number">0</span>
+    filenames_from_dir<span class="token punctuation">(</span>image_dir<span class="token punctuation">,</span> file_names<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 得到所有图片的绝对路径</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> file_names<span class="token punctuation">:</span>
+        img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        root_dir<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> exten <span class="token operator">=</span> get_filePath_Name_Ext<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        size1 <span class="token operator">=</span> img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># Height</span>
+        size0 <span class="token operator">=</span> img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># Width</span>
+        <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span>img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">-</span>width<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span>img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>height<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                crop_dir1 <span class="token operator">=</span> image_save_dir <span class="token operator">+</span> <span class="token string">'\\'</span> <span class="token operator">+</span> filename <span class="token operator">+</span> <span class="token string">'cropxy_'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'_'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>y<span class="token punctuation">)</span> <span class="token operator">+</span> exten
+                region <span class="token operator">=</span> img<span class="token punctuation">.</span>crop<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>x<span class="token operator">+</span>width<span class="token punctuation">,</span>y<span class="token operator">+</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                region<span class="token punctuation">.</span>save<span class="token punctuation">(</span>crop_dir1<span class="token punctuation">)</span>
+                cropLen <span class="token operator">+=</span> <span class="token number">1</span>
+        x <span class="token operator">=</span> img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">//</span><span class="token number">2</span> <span class="token operator">-</span> width<span class="token operator">//</span><span class="token number">2</span>
+        y <span class="token operator">=</span> img<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">//</span><span class="token number">2</span> <span class="token operator">-</span> height<span class="token operator">//</span><span class="token number">2</span>
+        crop_dir2 <span class="token operator">=</span> image_save_dir2<span class="token operator">+</span><span class="token string">'\\'</span><span class="token operator">+</span>filename<span class="token operator">+</span><span class="token string">'cropxy_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token operator">+</span>exten
+        region <span class="token operator">=</span> img<span class="token punctuation">.</span>crop<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>x<span class="token operator">+</span>width<span class="token punctuation">,</span>y<span class="token operator">+</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        region<span class="token punctuation">.</span>save<span class="token punctuation">(</span>crop_dir2<span class="token punctuation">)</span>
+        cropLen <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> cropLen
+
+<span class="token keyword">def</span> <span class="token function">crop_slideWindows</span><span class="token punctuation">(</span>image_dir<span class="token punctuation">,</span>width<span class="token punctuation">,</span>height<span class="token punctuation">,</span>stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    滑窗法：
+    """</span>
+    save_path<span class="token operator">=</span>image_dir <span class="token operator">+</span> <span class="token string">'\\crops'</span>
+    create_new_folder<span class="token punctuation">(</span>save_path<span class="token punctuation">)</span>
+    file_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true"># 得到所有图片的绝对路径，包括子文件夹中的图片</span>
+    filenames_from_dir<span class="token punctuation">(</span>image_dir<span class="token punctuation">,</span> file_names<span class="token punctuation">)</span>
+    cropLen <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> file_names<span class="token punctuation">:</span>
+        im <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 分别获得文件夹的根目录，图片名，图片的后缀名</span>
+        root_dir<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> exten <span class="token operator">=</span> get_filePath_Name_Ext<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> width<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">-</span>width<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">for</span> y <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>height<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    crop_dir <span class="token operator">=</span> save_path<span class="token operator">+</span><span class="token string">'\\'</span><span class="token operator">+</span>filename<span class="token operator">+</span><span class="token string">'cropxy_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token operator">+</span>exten
+                    region <span class="token operator">=</span> im<span class="token punctuation">.</span>crop<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>x<span class="token operator">+</span>width<span class="token punctuation">,</span>y<span class="token operator">+</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    region<span class="token punctuation">.</span>save<span class="token punctuation">(</span>crop_dir<span class="token punctuation">)</span>
+                    cropLen <span class="token operator">+=</span><span class="token number">1</span>
+    <span class="token keyword">return</span> cropLen
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://it-hao.github.io" class="b-link-green">小艾博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/sr-shu-ju-chu-li/" class="b-link-green">SR数据处理</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/sr-shu-ju-chu-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="SR数据处理">
+                        
+                        <span class="card-title">SR数据处理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">在做SR实验中，因为网络深度，显存较小等问题，必须对图片进行处理，以便能够得到更好的实验结果。
+SR数据处理1、图片多尺度处理这里主要的思想是：
+
+将尺度大于 512×512 的图片按照0.5.-&gt;06-&gt;···1.0的尺度分别</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SR/" class="post-category" target="_blank">
+                                    SR
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pytorch/" target="_blank">
+                        <span class="chip bg-color">pytorch</span>
+                    </a>
+                    
+                    <a href="/tags/python/" target="_blank">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/SR/" target="_blank">
+                        <span class="chip bg-color">SR</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/c-bian-cheng-ti/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="C++试卷">
+                        
+                        <span class="card-title">C++试卷</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">2018-2019年本科考试编程题，记录一下，以便来年参考~
+编程题1、二进制转换设计函数convert_number(int number ,int radius)，任意输入一个int型正整数（number）,对它进行二进制（radius</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/作业/" class="post-category" target="_blank">
+                                    作业
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/" target="_blank">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 小艾博客<br />'
+            + '作者: 小艾<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">it-hao</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+			
+                <br>
+                <span id="busuanzi_container_site_pv">
+                    本站总访问量 <span id="busuanzi_value_site_pv" style="color: #fff;"></span> 次,&nbsp;
+                </span>
+                
+				<span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv" style="color: #fff;"></span> 人.
+                </span>
+                
+			
+        </div>
+        
+        
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
+    <i class="fa fa-heart"></i>
+</a>
+
+<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+ 
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+		<i class="fa fa-qq"></i>
+</a>
+
+<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+    <i class="fa fa-weibo"></i>
+</a>
+
+
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+
+
+
+
+
+</div>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
