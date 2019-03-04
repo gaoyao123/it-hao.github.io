@@ -1,0 +1,1166 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SR-pytorch-data-process, Java,Python,Computer Vision,Machine Learning,Deep Learning">
+    <meta name="description" content="# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Wed May  2 20:17:10 2018
+utils:load images, pre-process images
+@author: HooJame
+&#34;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SR-pytorch-data-process | 小艾博客</title>
+    <link rel="icon" type="image/png" href="/pig4.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/pig4.png" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">小艾博客</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>文章标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>文章分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>文章归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>小艾</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>膜拜大佬</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/pig4.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小艾博客</div>
+        <div class="logo-desc">
+            
+            优秀的人生是孤独的
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                文章标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                文章分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                文章归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                小艾
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                膜拜大佬
+            </a>
+        </li>
+        
+        
+    </ul>
+
+    <div class="social-link"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
+    <i class="fa fa-heart"></i>
+</a>
+
+<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+ 
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+		<i class="fa fa-qq"></i>
+</a>
+
+<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+    <i class="fa fa-weibo"></i>
+</a>
+
+
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+
+
+
+
+
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        SR-pytorch-data-process
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-03-04
+                </span>
+				
+				
+                    <span id="busuanzi_container_page_pv" class="post-read">
+                    <i class="fa fa-eye fa-fw"></i>阅读 <span id="busuanzi_value_page_pv"></span>
+				
+            </span></div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token triple-quoted-string string">"""
+Created on Wed May  2 20:17:10 2018
+utils:load images, pre-process images
+@author: HooJame
+"""</span>
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> random
+<span class="token keyword">from</span> scipy<span class="token punctuation">.</span>misc <span class="token keyword">import</span> imsave
+
+<span class="token keyword">import</span> torch
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> Dataset<span class="token punctuation">,</span> DataLoader<span class="token punctuation">,</span> ConcatDataset
+<span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms
+
+<span class="token comment" spellcheck="true"># 忽略警告</span>
+<span class="token keyword">import</span> warnings
+warnings<span class="token punctuation">.</span>filterwarnings<span class="token punctuation">(</span><span class="token string">"ignore"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">is_image_file</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">".png"</span><span class="token punctuation">,</span> <span class="token string">".jpg"</span><span class="token punctuation">,</span> <span class="token string">".jpeg"</span><span class="token punctuation">,</span> <span class="token string">".bmp"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    判断以 mode 中的任一后缀名的文件是否存在
+    """</span>
+    <span class="token keyword">return</span> any<span class="token punctuation">(</span>filename<span class="token punctuation">.</span>endswith<span class="token punctuation">(</span>extension<span class="token punctuation">)</span> <span class="token keyword">for</span> extension <span class="token keyword">in</span> mode<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">filenames_from_dir</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> filenames<span class="token punctuation">,</span> mode <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">".png"</span><span class="token punctuation">,</span> <span class="token string">".jpg"</span><span class="token punctuation">,</span> <span class="token string">".jpeg"</span><span class="token punctuation">,</span> <span class="token string">".bmp"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""mode: 图像格式
+    root_dir (string):图像集的根目录
+    filenames:保存文件名的列表
+    """</span>
+    <span class="token keyword">for</span> filename <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>root_dir<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        filepath <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 如果是图片</span>
+        <span class="token keyword">if</span> is_image_file<span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            filenames<span class="token punctuation">.</span>append<span class="token punctuation">(</span>filepath<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 如果是文件夹</span>
+        <span class="token keyword">elif</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            filenames_from_dir<span class="token punctuation">(</span>filepath<span class="token punctuation">,</span>filenames<span class="token punctuation">,</span>mode<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_filePath_Name_Ext</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">(</span>filepath<span class="token punctuation">,</span> tempfilename<span class="token punctuation">)</span> <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>split<span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
+    <span class="token punctuation">(</span>shotname<span class="token punctuation">,</span>extension<span class="token punctuation">)</span> <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>tempfilename<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> filepath<span class="token punctuation">,</span>shotname<span class="token punctuation">,</span>extension
+
+<span class="token keyword">def</span> <span class="token function">crop_image_set</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token punctuation">,</span> width<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""crop images into a database with window(height,width,stride)
+    切割图片，进一步拓展数据集
+    """</span>
+    save_path<span class="token operator">=</span>root_dir <span class="token operator">+</span> <span class="token string">'\\crops'</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>save_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>save_path<span class="token punctuation">)</span>
+    file_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true"># 得到所有图片的绝对路径，包括子文件夹中的图片</span>
+    filenames_from_dir<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> file_names<span class="token punctuation">)</span>
+    cropLen <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> file_names<span class="token punctuation">:</span>
+        im <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 分别获得文件夹的根目录，图片名，图片的后缀名</span>
+        root_dir<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> exten <span class="token operator">=</span> get_filePath_Name_Ext<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> width<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> height<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">-</span>width<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">for</span> y <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> im<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>height<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    crop_dir <span class="token operator">=</span> save_path<span class="token operator">+</span><span class="token string">'\\'</span><span class="token operator">+</span>filename<span class="token operator">+</span><span class="token string">'cropxy_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'_'</span><span class="token operator">+</span>str<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token operator">+</span>exten
+                    region <span class="token operator">=</span> im<span class="token punctuation">.</span>crop<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>x<span class="token operator">+</span>width<span class="token punctuation">,</span>y<span class="token operator">+</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    region<span class="token punctuation">.</span>save<span class="token punctuation">(</span>crop_dir<span class="token punctuation">)</span>
+                    cropLen <span class="token operator">+=</span><span class="token number">1</span>
+    <span class="token keyword">return</span> cropLen
+
+<span class="token keyword">class</span> <span class="token class-name">SRdataset</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""从文件夹中加载图像；但是需要先进行图片的切块，图像预处理；加载图像集
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">96</span><span class="token punctuation">,</span> downscale<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>None<span class="token punctuation">,</span>
+                 rotate <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> rescale <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""root_dir (string):图像集的根目录
+        transform (callable, optional):可选择进行的图像变换
+        channel: 1 CSV, 3 RGB
+        """</span>
+        self<span class="token punctuation">.</span>transform <span class="token operator">=</span> transform        
+        self<span class="token punctuation">.</span>is_gray <span class="token operator">=</span> is_gray
+        self<span class="token punctuation">.</span>datalen <span class="token operator">=</span> crop_image_set<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span>height<span class="token punctuation">,</span> width<span class="token punctuation">,</span> stride<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>filenames <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        filenames_from_dir<span class="token punctuation">(</span>root_dir<span class="token operator">+</span><span class="token string">'\\crops'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>filenames<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>downscale <span class="token operator">=</span> downscale
+        self<span class="token punctuation">.</span>rotate <span class="token operator">=</span> rotate
+        self<span class="token punctuation">.</span>rescale <span class="token operator">=</span> rescale
+        self<span class="token punctuation">.</span>totensor <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>datalen
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        lab <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>self<span class="token punctuation">.</span>filenames<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>rotate<span class="token punctuation">:</span>
+            dv <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>rotate<span class="token punctuation">(</span><span class="token number">90</span><span class="token operator">*</span>dv<span class="token punctuation">,</span> expand <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>rescale<span class="token punctuation">:</span>
+            dv <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span>dv <span class="token operator">//</span> <span class="token number">10</span><span class="token punctuation">,</span> lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>dv <span class="token operator">//</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+
+        size1 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        size0 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>downtrans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+            transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>size1<span class="token punctuation">,</span> size0<span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>is_gray<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'YCbCr'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 分别返回 data 和 label</span>
+        data <span class="token operator">=</span> self<span class="token punctuation">.</span>downtrans<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">'image'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'label'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>lab<span class="token punctuation">)</span><span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SRdataset2</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""从文件夹中加载图像；图像预处理；加载图像集
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">96</span><span class="token punctuation">,</span> downscale<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>None<span class="token punctuation">,</span>
+                 rotate <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> rescale <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""root_dir (string):图像集的根目录
+        transform (callable, optional):可选择进行的图像变换
+        channel: 1 CSV, 3 RGB
+        """</span>
+        self<span class="token punctuation">.</span>transform <span class="token operator">=</span> transform        
+        self<span class="token punctuation">.</span>is_gray <span class="token operator">=</span> is_gray
+        <span class="token comment" spellcheck="true">#self.datalen = crop_image_set(root_dir,height, width, stride)</span>
+        self<span class="token punctuation">.</span>filenames <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        filenames_from_dir<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>filenames<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>downscale <span class="token operator">=</span> downscale
+        self<span class="token punctuation">.</span>rotate <span class="token operator">=</span> rotate
+        self<span class="token punctuation">.</span>rescale <span class="token operator">=</span> rescale
+        self<span class="token punctuation">.</span>totensor <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>filenames<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        lab <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>self<span class="token punctuation">.</span>filenames<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>rotate<span class="token punctuation">:</span>
+            dv <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>rotate<span class="token punctuation">(</span><span class="token number">90</span><span class="token operator">*</span>dv<span class="token punctuation">,</span> expand <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>rescale<span class="token punctuation">:</span>
+            dv <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span>dv <span class="token operator">//</span> <span class="token number">10</span><span class="token punctuation">,</span> lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>dv <span class="token operator">//</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+
+        size1 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        size0 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>downtrans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+            transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>size1<span class="token punctuation">,</span> size0<span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>is_gray<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'YCbCr'</span><span class="token punctuation">)</span>
+        data <span class="token operator">=</span> self<span class="token punctuation">.</span>downtrans<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">'image'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'label'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>lab<span class="token punctuation">)</span><span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SRdataset3</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""从文件夹中加载图像；图像预处理；加载图像集
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> downscale<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>None<span class="token punctuation">,</span>
+                 rotate <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> rescale <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> lr_sr <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""root_dir (string):图像集的根目录
+        transform (callable, optional):可选择进行的图像变换
+        channel: 1 CSV, 3 RGB
+        """</span>
+        self<span class="token punctuation">.</span>transform <span class="token operator">=</span> transform        
+        self<span class="token punctuation">.</span>is_gray <span class="token operator">=</span> is_gray
+        self<span class="token punctuation">.</span>filenames <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        filenames_from_dir<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>filenames<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>downscale <span class="token operator">=</span> downscale
+        self<span class="token punctuation">.</span>rotate <span class="token operator">=</span> rotate
+        self<span class="token punctuation">.</span>totensor <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>lr_sr <span class="token operator">=</span> lr_sr
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>filenames<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        lab <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>self<span class="token punctuation">.</span>filenames<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>rotate<span class="token punctuation">:</span>
+            dv <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>rotate<span class="token punctuation">(</span><span class="token number">90</span><span class="token operator">*</span>dv<span class="token punctuation">,</span> expand <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 旋转对象返回一个新对象，（旋转角度，expand设置为True→调整整个尺寸以适应旋转后的新图像）</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 缩小训练的图片尺寸</span>
+        size1 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        size0 <span class="token operator">=</span> int<span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">/</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 标签图片的尺寸不变</span>
+        lab_size0 <span class="token operator">=</span> int<span class="token punctuation">(</span>size0 <span class="token operator">*</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        lab_size1 <span class="token operator">=</span> int<span class="token punctuation">(</span>size1 <span class="token operator">*</span> self<span class="token punctuation">.</span>downscale<span class="token punctuation">)</span>
+        lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>crop<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> lab_size0<span class="token punctuation">,</span> lab_size1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 判断此处的图片的像素是不是过大，过大的话需要对其进行降采样</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>lr_sr<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>downtrans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>size1<span class="token punctuation">,</span> size0<span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>downtrans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+                transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>size1<span class="token punctuation">,</span> size0<span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                transforms<span class="token punctuation">.</span>Scale<span class="token punctuation">(</span><span class="token punctuation">(</span>lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lab<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> interpolation<span class="token operator">=</span>Image<span class="token punctuation">.</span>BICUBIC<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>is_gray<span class="token punctuation">:</span>
+            lab <span class="token operator">=</span> lab<span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'YCbCr'</span><span class="token punctuation">)</span>
+        data <span class="token operator">=</span> self<span class="token punctuation">.</span>downtrans<span class="token punctuation">(</span>lab<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">'image'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'label'</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>totensor<span class="token punctuation">(</span>lab<span class="token punctuation">)</span><span class="token punctuation">}</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Modcrop</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""按照给定步长去除图像边缘余数，更改一个图像的尺寸
+    Args:
+        window: 滑动窗口
+        stride: 步长。 如果是个元组类型, step(0):横向；step(1)：纵向。
+        如果int类型,横向与纵向的步长一致。
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> window<span class="token punctuation">,</span> stride<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> isinstance<span class="token punctuation">(</span>window<span class="token punctuation">,</span> <span class="token punctuation">(</span>int<span class="token punctuation">,</span> tuple<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">assert</span> isinstance<span class="token punctuation">(</span>stride<span class="token punctuation">,</span> <span class="token punctuation">(</span>int<span class="token punctuation">,</span> tuple<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>window <span class="token operator">=</span> window
+        self<span class="token punctuation">.</span>stride <span class="token operator">=</span> stride
+
+    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> image<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        w<span class="token punctuation">,</span> h <span class="token operator">=</span> image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>size<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>self<span class="token punctuation">.</span>window<span class="token punctuation">,</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            h_ <span class="token operator">=</span> h <span class="token operator">-</span> self<span class="token punctuation">.</span>window
+            w_ <span class="token operator">=</span> w <span class="token operator">-</span> self<span class="token punctuation">.</span>window
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            new_h<span class="token punctuation">,</span> new_w <span class="token operator">=</span> self<span class="token punctuation">.</span>window
+            h_ <span class="token operator">=</span> h <span class="token operator">-</span> new_h
+            w_ <span class="token operator">=</span> w <span class="token operator">-</span> new_w
+
+        <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>self<span class="token punctuation">.</span>stride<span class="token punctuation">,</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            s_h <span class="token operator">=</span> self<span class="token punctuation">.</span>stride
+            s_w <span class="token operator">=</span> self<span class="token punctuation">.</span>stride
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            s_h<span class="token punctuation">,</span> s_w <span class="token operator">=</span> self<span class="token punctuation">.</span>stride
+
+        h <span class="token operator">=</span> h <span class="token operator">-</span> np<span class="token punctuation">.</span>mod<span class="token punctuation">(</span>h_<span class="token punctuation">,</span> s_h<span class="token punctuation">)</span>
+        w <span class="token operator">=</span> w <span class="token operator">-</span> np<span class="token punctuation">.</span>mod<span class="token punctuation">(</span>w_<span class="token punctuation">,</span> s_w<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> image<span class="token punctuation">.</span>resize<span class="token punctuation">(</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span>h<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># for up-scale dataset</span>
+<span class="token keyword">def</span> <span class="token function">make_dataset</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> down_scale_size<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> is_rotate<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    imgTransforms <span class="token operator">=</span> transforms<span class="token punctuation">.</span>RandomHorizontalFlip<span class="token punctuation">(</span>p<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+
+    srdataset <span class="token operator">=</span> SRdataset3<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> downscale<span class="token operator">=</span>down_scale_size<span class="token punctuation">,</span> is_gray<span class="token operator">=</span>is_gray<span class="token punctuation">,</span> transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> is_rotate<span class="token punctuation">:</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                                   SRdataset3<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> downscale<span class="token operator">=</span>down_scale_size<span class="token punctuation">,</span> is_gray<span class="token operator">=</span>is_gray<span class="token punctuation">,</span> transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>srdataset<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> DataLoader<span class="token punctuation">(</span>srdataset<span class="token punctuation">,</span>batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>drop_last<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">make_testset</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> down_scale_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    srdataset <span class="token operator">=</span> SRdataset3<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> down_scale_size<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> DataLoader<span class="token punctuation">(</span>srdataset<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># for bicubic dataset</span>
+<span class="token keyword">def</span> <span class="token function">make_dataset_from_files</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> down_scale_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span>\
+                            height<span class="token operator">=</span><span class="token number">256</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">256</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">,</span> modCropKer<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> \
+                            is_rescale<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> is_rotate<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> is_downscale <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    imgTransforms <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+        transforms<span class="token punctuation">.</span>RandomHorizontalFlip<span class="token punctuation">(</span>p<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        Modcrop<span class="token punctuation">(</span>modCropKer<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#    imgTransforms = transforms.Compose([transforms.RandomVerticalFlip(p=0.5),</span>
+<span class="token comment" spellcheck="true">#                                        Modcrop(modCropKer,1)])</span>
+    srdataset <span class="token operator">=</span> SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span> downscale<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>is_gray<span class="token operator">=</span>is_gray<span class="token punctuation">,</span> transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> is_rescale<span class="token punctuation">:</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                                   SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span>
+                                             is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> down_scale_size<span class="token punctuation">,</span>
+                                             transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">,</span>
+                                             rescale<span class="token operator">=</span>is_rescale<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> is_rotate<span class="token punctuation">:</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                                   SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span>
+                                             is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> down_scale_size<span class="token punctuation">,</span>
+                                             transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">,</span>
+                                             rotate<span class="token operator">=</span>is_rotate<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> is_downscale<span class="token punctuation">:</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                               SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span>
+                                         is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                                         transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">,</span>
+                                         rotate<span class="token operator">=</span>is_rotate<span class="token punctuation">,</span>
+                                         rescale<span class="token operator">=</span>is_rescale<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                               SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span>
+                                         is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> <span class="token number">1.5</span><span class="token punctuation">,</span>
+                                         transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">,</span>
+                                         rotate<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                                         rescale<span class="token operator">=</span>is_rescale<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        srdataset <span class="token operator">=</span> ConcatDataset<span class="token punctuation">(</span><span class="token punctuation">[</span>srdataset<span class="token punctuation">,</span>
+                               SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> height<span class="token operator">=</span>height<span class="token punctuation">,</span> width<span class="token operator">=</span>width<span class="token punctuation">,</span> stride<span class="token operator">=</span>stride<span class="token punctuation">,</span>
+                                         is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span>
+                                         transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">,</span>
+                                         rotate<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                                         rescale<span class="token operator">=</span>is_rescale<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>srdataset<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> DataLoader<span class="token punctuation">(</span>srdataset<span class="token punctuation">,</span>batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>drop_last<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">make_test_data</span><span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span> down_scale_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> modCropKer<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    imgTransforms <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token comment" spellcheck="true">#transforms.RandomCrop((512,512)),</span>
+        Modcrop<span class="token punctuation">(</span>modCropKer<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    srdataset <span class="token operator">=</span> SRdataset2<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> is_gray <span class="token operator">=</span> is_gray<span class="token punctuation">,</span> downscale <span class="token operator">=</span> down_scale_size<span class="token punctuation">,</span> transform<span class="token operator">=</span>imgTransforms<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> DataLoader<span class="token punctuation">(</span>srdataset<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">save_datasets_to_files</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> num<span class="token punctuation">,</span> save_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""save images of tensor N*C*H*W to image"""</span>
+    <span class="token comment" spellcheck="true">#toPIL = transforms.ToPILImage()</span>
+    <span class="token comment" spellcheck="true">#if list(batch['label'].data.shape)[0] > 1:</span>
+    <span class="token comment" spellcheck="true">#    save_path = save_path + '\\batch_{:d}'.format(num)</span>
+    <span class="token comment" spellcheck="true">#    is_train = True</span>
+    <span class="token comment" spellcheck="true">#else:</span>
+    <span class="token comment" spellcheck="true">#    is_train = False</span>
+    is_train <span class="token operator">=</span> <span class="token boolean">False</span>
+    <span class="token keyword">if</span> image<span class="token punctuation">.</span>is_cuda<span class="token punctuation">:</span>
+        image <span class="token operator">=</span> image<span class="token punctuation">.</span>data<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        image <span class="token operator">=</span> image<span class="token punctuation">.</span>data
+    <span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>save_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>save_path<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> img <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#img = (img + 1) / 2</span>
+        img<span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> list<span class="token punctuation">(</span>img<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            save_img <span class="token operator">=</span> img<span class="token operator">*</span><span class="token number">255.0</span>
+            <span class="token comment" spellcheck="true">#save_img = toPIL(save_img.squeeze().clamp(0,255))</span>
+            save_img <span class="token operator">=</span> save_img<span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>transpose<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># img = (((img - img.min()) * 255) / (img.max() - img.min())).numpy().transpose(1, 2, 0).astype(np.uint8)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true">#save_img = toPIL(image.squeeze().clamp(0, 1))</span>
+            save_img <span class="token operator">=</span> img<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> is_train<span class="token punctuation">:</span>
+            save_fn <span class="token operator">=</span> save_path <span class="token operator">+</span> <span class="token string">'\\img_{:d}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'.png'</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            save_fn <span class="token operator">=</span> save_path <span class="token operator">+</span> <span class="token string">'\\img_{:d}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'.png'</span>
+        <span class="token comment" spellcheck="true">#save_img.save(save_fn,'png')</span>
+        imsave<span class="token punctuation">(</span>save_fn<span class="token punctuation">,</span> save_img<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+
+
+<span class="token comment" spellcheck="true">#    for i in filenames_from_dir("D:\SPYDER\Torchpy\images"):</span>
+<span class="token comment" spellcheck="true">#        im = Image.open(i)</span>
+<span class="token comment" spellcheck="true">#        print(2*im.size[0])</span>
+    save_path <span class="token operator">=</span> <span class="token string">"E:\\SuperResolution\\hdf5mat\\test\\Set5crop2test16"</span>
+    save_path2 <span class="token operator">=</span> <span class="token string">"E:\\SuperResolution\\hdf5mat\\test\\Set5crop2label16"</span>
+    lab_path <span class="token operator">=</span> <span class="token string">"E:\\SuperResolution\\hdf5mat\\test\\Set5crop"</span>
+    dataloader <span class="token operator">=</span> make_test_data<span class="token punctuation">(</span>root_dir<span class="token operator">=</span>lab_path<span class="token punctuation">,</span>down_scale_size<span class="token operator">=</span><span class="token number">1.6</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> it<span class="token punctuation">,</span> batch <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> batch<span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>shape<span class="token punctuation">,</span>
+              batch<span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+        save_datasets_to_files<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> it<span class="token punctuation">,</span> save_path<span class="token punctuation">)</span>
+        save_datasets_to_files<span class="token punctuation">(</span>batch<span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> it<span class="token punctuation">,</span> save_path2<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'done!'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://it-hao.github.io" class="b-link-green">小艾博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/sr-pytorch/" class="b-link-green">SR-pytorch-data-process</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/sr-pytorch/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="SR-pytorch-data-process">
+                        
+                        <span class="card-title">SR-pytorch-data-process</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary"># -*- coding: utf-8 -*-
+"""
+Created on Wed May  2 20:17:10 2018
+utils:load images, pre-process images
+@author: HooJame
+"</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小艾
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/test/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="test">
+                        
+                        <span class="card-title">test</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">test2
+
+
+
+
+
+
+this is markdown editor for hexo. 
+zhuzhuyuleHexoEditor
+
+
+Do not just seek happiness for yourself. Seek happ</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            小艾
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 小艾博客<br />'
+            + '作者: 小艾<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">it-hao</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+			
+                <br>
+                <span id="busuanzi_container_site_pv">
+                    本站总访问量 <span id="busuanzi_value_site_pv" style="color: #fff;"></span> 次,&nbsp;
+                </span>
+                
+				<span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv" style="color: #fff;"></span> 人.
+                </span>
+                
+			
+        </div>
+        
+        
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
+    <i class="fa fa-heart"></i>
+</a>
+
+<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+ 
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+		<i class="fa fa-qq"></i>
+</a>
+
+<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+    <i class="fa fa-weibo"></i>
+</a>
+
+
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+
+
+
+
+
+</div>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
