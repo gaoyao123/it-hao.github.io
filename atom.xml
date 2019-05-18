@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>耗子Deng</title>
   
-  <subtitle>The Answer</subtitle>
+  <subtitle>耗子Deng</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
@@ -10,7 +10,7 @@
   <id>https://it-hao.github.io/</id>
   
   <author>
-    <name>小艾</name>
+    <name>耗子Deng</name>
     
   </author>
   
