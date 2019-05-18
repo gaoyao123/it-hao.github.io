@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-    
+
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="关于, Java,Python,Computer Vision,Machine Learning,Deep Learning">
     <meta name="description" content="关于 | 小艾博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
@@ -18,36 +17,37 @@
     <link rel="icon" type="image/png" href="/pig4.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
-</head>
 
 <body>
 
 <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="container">
-            <div class="nav-wrapper">
-                <div class="brand-logo">
-                    <a href="/" class="waves-effect waves-light">
-                        
-                        <img src="/medias/pig4.png" class="logo-img hide-on-small-only">
-                        
-                        <span class="logo-span">小艾博客</span>
-                    </a>
-                </div>
-                
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/pig4.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小艾博客</span>
+                </a>
+            </div>
+            
 
-<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
 <ul class="right">
     
     <li class="hide-on-med-and-down">
@@ -64,7 +64,7 @@
             
             <i class="fa fa-tags"></i>
             
-            <span>文章标签</span>
+            <span>标签</span>
         </a>
     </li>
     
@@ -73,7 +73,7 @@
             
             <i class="fa fa-bookmark"></i>
             
-            <span>文章分类</span>
+            <span>分类</span>
         </a>
     </li>
     
@@ -82,7 +82,7 @@
             
             <i class="fa fa-archive"></i>
             
-            <span>文章归档</span>
+            <span>归档</span>
         </a>
     </li>
     
@@ -91,7 +91,7 @@
             
             <i class="fa fa-user-circle-o"></i>
             
-            <span>小艾</span>
+            <span>关于</span>
         </a>
     </li>
     
@@ -100,19 +100,18 @@
             
             <i class="fa fa-address-book"></i>
             
-            <span>膜拜大佬</span>
+            <span>友情链接</span>
         </a>
     </li>
     
     <li>
-        <a id="toggleSearch" class="waves-effect waves-light">
-            <i id="searchIcon" class="mdi-action-search"></i>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
         </a>
     </li>
-
 </ul>
 
-<div class="side-nav" id="mobile-nav">
+<div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
         
@@ -144,7 +143,7 @@
                 
                 <i class="fa fa-fw fa-tags"></i>
                 
-                文章标签
+                标签
             </a>
         </li>
         
@@ -153,7 +152,7 @@
                 
                 <i class="fa fa-fw fa-bookmark"></i>
                 
-                文章分类
+                分类
             </a>
         </li>
         
@@ -162,7 +161,7 @@
                 
                 <i class="fa fa-fw fa-archive"></i>
                 
-                文章归档
+                归档
             </a>
         </li>
         
@@ -171,7 +170,7 @@
                 
                 <i class="fa fa-fw fa-user-circle-o"></i>
                 
-                小艾
+                关于
             </a>
         </li>
         
@@ -180,47 +179,19 @@
                 
                 <i class="fa fa-fw fa-address-book"></i>
                 
-                膜拜大佬
+                友情链接
             </a>
         </li>
         
         
     </ul>
-
-    <div class="social-link"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
-    <i class="fa fa-heart"></i>
-</a>
-
-<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
- 
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
-		<i class="fa fa-qq"></i>
-</a>
-
-<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
-    <i class="fa fa-weibo"></i>
-</a>
-
-
-
-<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-    <i class="fa fa-rss"></i>
-</a>
-
-
-
-
-
-</div>
 </div>
 
-            </div>
         </div>
 
         
     </nav>
+
 </header>
 
 <style type="text/css">
@@ -230,33 +201,31 @@
     }
 </style>
 
-<div class="bg-cover  about-cover" style="background-image: url('/medias/cover.jpg')">
+<div class="bg-cover pd-header about-cover">
     <div class="container">
-        <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-                <div class="brand">
-                    <div class="title center-align">
-                    
-                        The Answer
-                    
-                    </div>
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    The Answer
+                
+            </div>
 
-                    <div class="description center-align">
-                    
-                        优秀的人生是孤独的
-                    
-                    </div>
-                </div>
+            <div class="description center-align">
+                
+                    优秀的人生是孤独的
+                
             </div>
         </div>
-        
     </div>
 </div>
-
 <script>
-// Dynamically switch banner pictures every day.
+// 每天切换 banner 图.  Switch banner image every day.
 $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
+    </div>
+</div>
 
 <main class="content">
 
@@ -267,7 +236,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">7</a></span>
+    <span class="count"><a href="/" target="_blank">5</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -295,7 +264,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">7</a></span>
+    <span class="count"><a href="/" target="_blank">5</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -317,32 +286,28 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="title">小艾</div>
                                 <div class="career">HFUT 计算机视觉 研究生 一枚</div>
                                 <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
-                                    <a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
-    <i class="fa fa-heart"></i>
-</a>
-
-<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
- 
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
-		<i class="fa fa-qq"></i>
-</a>
-
-<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
-    <i class="fa fa-weibo"></i>
-</a>
+                                    
+    <a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
 
 
 
-<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-    <i class="fa fa-rss"></i>
-</a>
+    <a href="mailto:haoshenhs@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
 
 
 
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1622587970" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
 
 
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
 
                                 </div>
                             </div>
@@ -350,32 +315,28 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     </div>
                     <div class="col l4 hide-on-med-and-down" data-aos="zoom-in-left">
                         <div class="social-link">
-                            <a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
-    <i class="fa fa-heart"></i>
-</a>
-
-<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
- 
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
-		<i class="fa fa-qq"></i>
-</a>
-
-<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
-    <i class="fa fa-weibo"></i>
-</a>
+                            
+    <a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
 
 
 
-<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-    <i class="fa fa-rss"></i>
-</a>
+    <a href="mailto:haoshenhs@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
 
 
 
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1622587970" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
 
 
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
 
                         </div>
                     </div>
@@ -395,7 +356,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 </style>
 
 <div id="postCharts" class="post-charts">
-    <div class="title center-align" data-aos="zoom-in-up">文章统计图</div>
+    <div class="title center-align" data-aos="zoom-in-up">
+        <i class="fa fa-bar-chart"></i>&nbsp;&nbsp;文章统计图
+    </div>
     <div class="row">
         <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
             <div id="posts-chart"></div>
@@ -430,7 +393,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         },
         xAxis: {
             type: 'category',
-            data: ["2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03"]
+            data: ["2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05"]
         },
         yAxis: {
             type: 'value',
@@ -440,7 +403,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,5,1,1],
+                data: [0,0,0,0,0,0,0,0,5,0,0,0,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -482,7 +445,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"算法","value":1},{"name":"作业","value":1},{"name":"随笔","value":2},{"name":"SR","value":1}],
+                data: [{"name":"算法","value":1},{"name":"作业","value":1},{"name":"SR","value":1},{"name":"随笔","value":2}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -506,7 +469,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["c++","0-1背包","hexo","pytorch","python","SR","博客"]
+                data: ["c++","0-1背包","pytorch","python","SR","hexo","博客"]
             }
         ],
         yAxis: [
@@ -549,19 +512,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 </script>
 
                 
-                
-<div class="my-projects">
-    <div class="title center-align" data-aos="zoom-in-up">我的项目</div>
-    <div class="row">
-        
-    </div>
-</div>
-                
 
                 
                 
 <div class="my-skills">
-    <div class="title center-align" data-aos="zoom-in-up">我的技能</div>
+    <div class="title center-align" data-aos="zoom-in-up">
+        <i class="fa fa-wrench"></i>&nbsp;&nbsp;我的技能
+    </div>
     <div class="row">
         
         
@@ -642,7 +599,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     
     <div class="other-skills chip-container" data-aos="zoom-in-up">
-        <div class="sub-title center-align">其他技能</div>
+        <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;其他技能</div>
         <div class="tag-chips center-align">
             
             
@@ -654,12 +611,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/c/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">c++</span>
-            </a>
-            
-            
-            
-            <a href="/tags/hexo/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">hexo</span>
             </a>
             
             
@@ -678,6 +629,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
+            <a href="/tags/hexo/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">hexo</span>
+            </a>
+            
+            
+            
             <a href="/tags/博客/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">博客</span>
             </a>
@@ -693,7 +650,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 
 <div id="myGallery" class="my-gallery">
-    <div class="title center-align" data-aos="zoom-in-up">相册</div>
+    <div class="title center-align" data-aos="zoom-in-up">
+        <i class="fa fa-photo"></i>&nbsp;&nbsp;相册
+    </div>
     <div class="row">
         
         
@@ -792,54 +751,52 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">it-hao</a>基于
+            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">The Answer</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            <a href="https://github.com/it-hao/it-hao.github.io" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
 
             
 			
                 <br>
+                
                 <span id="busuanzi_container_site_pv">
-                    本站总访问量 <span id="busuanzi_value_site_pv" style="color: #fff;"></span> 次,&nbsp;
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
                 </span>
                 
-				<span id="busuanzi_container_site_uv">
-                    访客数 <span id="busuanzi_value_site_uv" style="color: #fff;"></span> 人.
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
                 </span>
                 
-			
+            
         </div>
-        
-        
-        <div class="col s12 m4 l4 social-link social-statis"><a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="CSDN" data-position="top" data-delay="50">
-    <i class="fa fa-heart"></i>
-</a>
-
-<a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-    <i class="fa fa-github"></i>
-</a>
- 
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
-		<i class="fa fa-qq"></i>
-</a>
-
-<a href="https://weibo.com/5304098823/profile?topnav=1&wvr=6" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
-    <i class="fa fa-weibo"></i>
-</a>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
 
 
 
-<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-    <i class="fa fa-rss"></i>
-</a>
+    <a href="mailto:haoshenhs@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
 
 
 
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1622587970" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
 
 
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
 </div>
-
-        
     </div>
 </footer>
 
@@ -850,8 +807,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title">搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
         </div>
         <div id="searchResult"></div>
     </div>
@@ -859,7 +816,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 <script src="/js/search.js"></script>
 <script type="text/javascript">
+$(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
 </script>
 <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
@@ -869,7 +828,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 </div>
 
 
-<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/materialize/materialize.min.js"></script>
 <script src="/libs/masonry/masonry.pkgd.min.js"></script>
 <script src="/libs/aos/aos.js"></script>
 <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
