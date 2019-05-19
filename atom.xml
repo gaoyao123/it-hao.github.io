@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-05-19T03:14:35.714Z</updated>
+  <updated>2019-05-19T04:27:29.649Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我的</title>
-    <link href="https://it-hao.github.io/2019/05/19/sui-bi-wo-de/"/>
-    <id>https://it-hao.github.io/2019/05/19/sui-bi-wo-de/</id>
-    <published>2019-05-19T03:04:37.000Z</published>
-    <updated>2019-05-19T03:14:35.714Z</updated>
+    <title>图床工具的使用——PicGo</title>
+    <link href="https://it-hao.github.io/2019/05/19/tu-chuang-gong-ju-de-shi-yong-picgo/"/>
+    <id>https://it-hao.github.io/2019/05/19/tu-chuang-gong-ju-de-shi-yong-picgo/</id>
+    <published>2019-05-19T03:27:05.000Z</published>
+    <updated>2019-05-19T04:27:29.649Z</updated>
     
     <summary type="html">
     
@@ -29,13 +29,21 @@
       
         
         
-          &lt;p&gt;我的世界&lt;/p&gt;
-
+          &lt;h2 id=&quot;一、图床&quot;&gt;&lt;a href=&quot;#一、图床&quot; class=&quot;headerlink&quot; title=&quot;一、图床&quot;&gt;&lt;/a&gt;一、图床&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;方便程度：★★★★☆&lt;/li&gt;
+&lt;li&gt;配置难度：★★☆☆☆&lt;/li&gt;
+&lt;li&gt;适用环境：win + mac
         
       
     
     </summary>
     
+      <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
+    
+    
+      <category term="图床" scheme="https://it-hao.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -44,7 +52,7 @@
     <link href="https://it-hao.github.io/2019/05/18/tools-vue-wen-dang-feng-ge-de-typora-zhu-ti/"/>
     <id>https://it-hao.github.io/2019/05/18/tools-vue-wen-dang-feng-ge-de-typora-zhu-ti/</id>
     <published>2019-05-18T15:30:00.000Z</published>
-    <updated>2019-05-18T14:38:37.377Z</updated>
+    <updated>2019-05-19T04:27:22.867Z</updated>
     
     <summary type="html">
     
@@ -59,7 +67,7 @@
     
     </summary>
     
-      <category term="软件工具" scheme="https://it-hao.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
+      <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
     
     
       <category term="Typora" scheme="https://it-hao.github.io/tags/Typora/"/>
