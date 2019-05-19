@@ -2,17 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>耗子Deng</title>
   
-  <subtitle>耗子Deng</subtitle>
+  <subtitle>WELCOME</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
   <updated>2019-05-19T04:27:29.649Z</updated>
   <id>https://it-hao.github.io/</id>
-  
-  <author>
-    <name>耗子Deng</name>
-    
-  </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
