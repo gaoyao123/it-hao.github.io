@@ -6,10 +6,36 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-05-19T07:10:27.439Z</updated>
+  <updated>2019-05-20T15:09:31.837Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SR评价指标</title>
+    <link href="https://it-hao.github.io/2019/05/20/python-sr-ping-jie-zhi-biao/"/>
+    <id>https://it-hao.github.io/2019/05/20/python-sr-ping-jie-zhi-biao/</id>
+    <published>2019-05-20T15:06:13.000Z</published>
+    <updated>2019-05-20T15:09:31.837Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="python, pytorch" scheme="https://it-hao.github.io/categories/python-pytorch/"/>
+    
+    
+      <category term="SR" scheme="https://it-hao.github.io/tags/SR/"/>
+    
+  </entry>
   
   <entry>
     <title>图床工具的使用——PicGo</title>

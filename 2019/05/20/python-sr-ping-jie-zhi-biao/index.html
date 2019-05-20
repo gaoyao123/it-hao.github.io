@@ -1,0 +1,980 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SR评价指标, Java,Python,Computer Vision,Machine Learning,Deep Learning">
+    <meta name="description" content="针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SR评价指标 | 耗子Deng</title>
+    <link rel="icon" type="image/png" href="/pig4.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/pig4.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">耗子Deng</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>耗子Deng</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>膜拜大佬</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/pig4.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">耗子Deng</div>
+        <div class="logo-desc">
+            
+            孤独是一个人的狂欢，狂欢是一群人的孤独
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                耗子Deng
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                膜拜大佬
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        SR评价指标
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SR/" target="_blank">
+                                <span class="chip bg-color">SR</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/python-pytorch/" class="post-category" target="_blank">
+                                python, pytorch
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-05-20
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        735
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        4 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="针对super-resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。"><a href="#针对super-resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。" class="headerlink" title="针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。"></a>针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token number">1</span>、使用预训练模型生成SR图片：
+sr <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>lr<span class="token punctuation">,</span> idx_scale<span class="token punctuation">)</span>
+<span class="token number">2</span>、然后将tensor转化为numpy<span class="token punctuation">:</span>
+visuals <span class="token operator">=</span> utility<span class="token punctuation">.</span>get_current_visual<span class="token punctuation">(</span>lr<span class="token punctuation">,</span> hr<span class="token punctuation">,</span> sr<span class="token punctuation">,</span> self<span class="token punctuation">.</span>args<span class="token punctuation">.</span>rgb_range<span class="token punctuation">)</span>
+其中：get_current_visual<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">get_current_visual</span><span class="token punctuation">(</span>lr<span class="token punctuation">,</span> hr <span class="token punctuation">,</span>sr<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    return LR SR (HR) images
+    """</span>
+    out_dict <span class="token operator">=</span> OrderedDict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    out_dict<span class="token punctuation">[</span><span class="token string">'LR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> lr<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    out_dict<span class="token punctuation">[</span><span class="token string">'SR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> sr<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    out_dict<span class="token punctuation">[</span><span class="token string">'HR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> hr<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    out_dict<span class="token punctuation">[</span><span class="token string">'LR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_dict<span class="token punctuation">[</span><span class="token string">'HR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_dict<span class="token punctuation">[</span><span class="token string">'SR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> \
+    Tensor2np<span class="token punctuation">(</span><span class="token punctuation">[</span>out_dict<span class="token punctuation">[</span><span class="token string">'LR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_dict<span class="token punctuation">[</span><span class="token string">'HR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_dict<span class="token punctuation">[</span><span class="token string">'SR'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> out_dict
+
+<span class="token keyword">def</span> <span class="token function">Tensor2np</span><span class="token punctuation">(</span>tensor_list<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">_Tensor2numpy</span><span class="token punctuation">(</span>tensor<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        array <span class="token operator">=</span> np<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span>quantize<span class="token punctuation">(</span>tensor<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> array
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>_Tensor2numpy<span class="token punctuation">(</span>tensor<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span> <span class="token keyword">for</span> tensor <span class="token keyword">in</span> tensor_list<span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">quantize</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span> rgb_range<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pixel_range <span class="token operator">=</span> <span class="token number">255</span> <span class="token operator">/</span> rgb_range
+    <span class="token keyword">return</span> img<span class="token punctuation">.</span>mul<span class="token punctuation">(</span>pixel_range<span class="token punctuation">)</span><span class="token punctuation">.</span>clamp<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">.</span>round
+<span class="token number">3</span>、计算psnr和ssim值
+psnr<span class="token punctuation">,</span> ssim <span class="token operator">=</span> utility<span class="token punctuation">.</span>calc_metrics<span class="token punctuation">(</span>visuals<span class="token punctuation">[</span><span class="token string">'SR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> visuals<span class="token punctuation">[</span><span class="token string">'HR'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> crop_border<span class="token operator">=</span>scale<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>重点在于计算PSNR值和SSIM值：</strong></p>
+<pre class="line-numbers language-python"><code class="language-python">将RGB通道图片转换为yCbCr
+<span class="token keyword">def</span> <span class="token function">rgb2ycbcr</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span> only_y<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''same as matlab rgb2ycbcr
+    only_y: only return Y channel
+    Input:
+        uint8, [0, 255]
+        float, [0, 1]
+    '''</span>
+    in_img_type <span class="token operator">=</span> img<span class="token punctuation">.</span>dtype
+    img<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> in_img_type <span class="token operator">!=</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">:</span>
+        img <span class="token operator">*=</span> <span class="token number">255</span><span class="token punctuation">.</span>
+    <span class="token comment" spellcheck="true"># convert</span>
+    <span class="token keyword">if</span> only_y<span class="token punctuation">:</span>
+        rlt <span class="token operator">=</span> np<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">65.481</span><span class="token punctuation">,</span> <span class="token number">128.553</span><span class="token punctuation">,</span> <span class="token number">24.966</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">255.0</span> <span class="token operator">+</span> <span class="token number">16.0</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        rlt <span class="token operator">=</span> np<span class="token punctuation">.</span>matmul<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">65.481</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">37.797</span><span class="token punctuation">,</span> <span class="token number">112.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">128.553</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">74.203</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">93.786</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                <span class="token punctuation">[</span><span class="token number">24.966</span><span class="token punctuation">,</span> <span class="token number">112.0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">18.214</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">255.0</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> in_img_type <span class="token operator">==</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">:</span>
+        rlt <span class="token operator">=</span> rlt<span class="token punctuation">.</span>round<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        rlt <span class="token operator">/=</span> <span class="token number">255</span><span class="token punctuation">.</span>
+    <span class="token keyword">return</span> rlt<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>in_img_type<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#########################calc_metrics#############################</span>
+<span class="token keyword">def</span> <span class="token function">calc_metrics</span><span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">,</span> crop_border<span class="token punctuation">,</span> test_Y<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">#</span>
+    img1 <span class="token operator">=</span> img1 <span class="token operator">/</span> <span class="token number">255</span><span class="token punctuation">.</span>
+    img2 <span class="token operator">=</span> img2 <span class="token operator">/</span> <span class="token number">255</span><span class="token punctuation">.</span>
+
+    <span class="token keyword">if</span> test_Y <span class="token operator">and</span> img1<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># evaluate on Y channel in YCbCr color space</span>
+        im1_in <span class="token operator">=</span> rgb2ycbcr<span class="token punctuation">(</span>img1<span class="token punctuation">)</span>
+        im2_in <span class="token operator">=</span> rgb2ycbcr<span class="token punctuation">(</span>img2<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        im1_in <span class="token operator">=</span> img1
+        im2_in <span class="token operator">=</span> img2
+
+    <span class="token keyword">if</span> im1_in<span class="token punctuation">.</span>ndim <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        cropped_im1 <span class="token operator">=</span> im1_in<span class="token punctuation">[</span>crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+        cropped_im2 <span class="token operator">=</span> im2_in<span class="token punctuation">[</span>crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+    <span class="token keyword">elif</span> im1_in<span class="token punctuation">.</span>ndim <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+        cropped_im1 <span class="token operator">=</span> im1_in<span class="token punctuation">[</span>crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">]</span>
+        cropped_im2 <span class="token operator">=</span> im2_in<span class="token punctuation">[</span>crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">,</span> crop_border<span class="token punctuation">:</span><span class="token operator">-</span>crop_border<span class="token punctuation">]</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'Wrong image dimension: {}. Should be 2 or 3.'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>im1_in<span class="token punctuation">.</span>ndim<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    psnr <span class="token operator">=</span> calc_psnr<span class="token punctuation">(</span>cropped_im1 <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">,</span> cropped_im2 <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">)</span>
+    ssim <span class="token operator">=</span> calc_ssim<span class="token punctuation">(</span>cropped_im1 <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">,</span> cropped_im2 <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> psnr<span class="token punctuation">,</span> ssim
+
+<span class="token keyword">def</span> <span class="token function">calc_psnr</span><span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># img1 and img2 have range [0, 255]</span>
+    img1 <span class="token operator">=</span> img1<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float64<span class="token punctuation">)</span>
+    img2 <span class="token operator">=</span> img2<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float64<span class="token punctuation">)</span>
+    mse <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">(</span>img1 <span class="token operator">-</span> img2<span class="token punctuation">)</span><span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> mse <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> float<span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">20</span> <span class="token operator">*</span> math<span class="token punctuation">.</span>log10<span class="token punctuation">(</span><span class="token number">255.0</span> <span class="token operator">/</span> math<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>mse<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">ssim</span><span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    C1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0.01</span> <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token operator">**</span><span class="token number">2</span>
+    C2 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0.03</span> <span class="token operator">*</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token operator">**</span><span class="token number">2</span>
+
+    img1 <span class="token operator">=</span> img1<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float64<span class="token punctuation">)</span>
+    img2 <span class="token operator">=</span> img2<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float64<span class="token punctuation">)</span>
+    kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getGaussianKernel<span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">)</span>
+    window <span class="token operator">=</span> np<span class="token punctuation">.</span>outer<span class="token punctuation">(</span>kernel<span class="token punctuation">,</span> kernel<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    mu1 <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>img1<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># valid</span>
+    mu2 <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>img2<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span>
+    mu1_sq <span class="token operator">=</span> mu1<span class="token operator">**</span><span class="token number">2</span>
+    mu2_sq <span class="token operator">=</span> mu2<span class="token operator">**</span><span class="token number">2</span>
+    mu1_mu2 <span class="token operator">=</span> mu1 <span class="token operator">*</span> mu2
+    sigma1_sq <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>img1<span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">-</span> mu1_sq
+    sigma2_sq <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>img2<span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">-</span> mu2_sq
+    sigma12 <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>img1 <span class="token operator">*</span> img2<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">-</span> mu1_mu2
+
+    ssim_map <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> mu1_mu2 <span class="token operator">+</span> C1<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> sigma12 <span class="token operator">+</span> C2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>mu1_sq <span class="token operator">+</span> mu2_sq <span class="token operator">+</span> C1<span class="token punctuation">)</span> <span class="token operator">*</span>
+                                                            <span class="token punctuation">(</span>sigma1_sq <span class="token operator">+</span> sigma2_sq <span class="token operator">+</span> C2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ssim_map<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">calc_ssim</span><span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''calculate SSIM
+    the same outputs as MATLAB's
+    img1, img2: [0, 255]
+    '''</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> img1<span class="token punctuation">.</span>shape <span class="token operator">==</span> img2<span class="token punctuation">.</span>shape<span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'Input images must have the same dimensions.'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> img1<span class="token punctuation">.</span>ndim <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> ssim<span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> img1<span class="token punctuation">.</span>ndim <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> img1<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            ssims <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                ssims<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ssim<span class="token punctuation">(</span>img1<span class="token punctuation">,</span> img2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>ssims<span class="token punctuation">)</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> img1<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> ssim<span class="token punctuation">(</span>np<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>img1<span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>img2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">'Wrong input image dimensions.'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">大爷，赏点呗~</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/05/20/python-sr-ping-jie-zhi-biao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="SR评价指标">
+                        
+                        <span class="card-title">SR评价指标</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是一个我自己用python实现的SR评价指标，和在matlab中测试的完全一致，所以用起来更加方便。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/python-pytorch/" class="post-category" target="_blank">
+                                    python, pytorch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SR/" target="_blank">
+                        <span class="chip bg-color">SR</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/05/19/tools-tu-chuang-gong-ju-de-shi-yong-picgo/">
+                    <div class="card-image">
+                        
+                        <img src="http://static.blinkfox.com/20181124-design.jpg" class="responsive-img" alt="图床工具的使用——PicGo">
+                        
+                        <span class="card-title">图床工具的使用——PicGo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            所谓图床工具，就是自动把本地图片转换成链接的一款工具，网络上有很多图床工具，就目前使用种类而言，PicGo 算得上一款比较优秀的图床工具。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/tools/" class="post-category" target="_blank">
+                                    tools
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/图床/" target="_blank">
+                        <span class="chip bg-color">图床</span>
+                    </a>
+                    
+                    <a href="/tags/hexo/" target="_blank">
+                        <span class="chip bg-color">hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">The Answer</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">6.0k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/p/1005055304098823/home?from=page_100505&amp;mod=TAB#place" class="tooltipped" target="_blank" data-tooltip="微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+   <a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="访问我的CSDN" data-position="top" data-delay="50">
+        <i class="fa fa-gratipay"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1622587970" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
