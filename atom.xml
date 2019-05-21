@@ -6,17 +6,44 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-05-20T15:09:31.837Z</updated>
+  <updated>2019-05-21T15:38:25.880Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Typora简单介绍</title>
+    <link href="https://it-hao.github.io/2019/05/21/tools-typora/"/>
+    <id>https://it-hao.github.io/2019/05/21/tools-typora/</id>
+    <published>2019-05-21T15:06:13.000Z</published>
+    <updated>2019-05-21T15:38:25.880Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Typora&quot;&gt;&lt;a href=&quot;#Typora&quot; class=&quot;headerlink&quot; title=&quot;Typora&quot;&gt;&lt;/a&gt;Typora&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
+    
+    
+      <category term="Typora" scheme="https://it-hao.github.io/tags/Typora/"/>
+    
+  </entry>
   
   <entry>
     <title>SR评价指标</title>
     <link href="https://it-hao.github.io/2019/05/20/python-sr-ping-jie-zhi-biao/"/>
     <id>https://it-hao.github.io/2019/05/20/python-sr-ping-jie-zhi-biao/</id>
     <published>2019-05-20T15:06:13.000Z</published>
-    <updated>2019-05-20T15:09:31.837Z</updated>
+    <updated>2019-05-21T15:36:58.474Z</updated>
     
     <summary type="html">
     
@@ -30,7 +57,9 @@
     
     </summary>
     
-      <category term="python, pytorch" scheme="https://it-hao.github.io/categories/python-pytorch/"/>
+      <category term="python" scheme="https://it-hao.github.io/categories/python/"/>
+    
+      <category term="pytorch" scheme="https://it-hao.github.io/categories/python/pytorch/"/>
     
     
       <category term="SR" scheme="https://it-hao.github.io/tags/SR/"/>
@@ -62,9 +91,9 @@
       <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
     
     
-      <category term="图床" scheme="https://it-hao.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
-    
       <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
+    
+      <category term="图床" scheme="https://it-hao.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
     
   </entry>
   
