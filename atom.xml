@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-05-22T10:49:12.767Z</updated>
+  <updated>2019-05-22T10:59:35.356Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,7 +16,7 @@
     <link href="https://it-hao.github.io/2019/05/22/sr-sr-shu-ju-ji-zheng-li/"/>
     <id>https://it-hao.github.io/2019/05/22/sr-sr-shu-ju-ji-zheng-li/</id>
     <published>2019-05-22T09:06:13.000Z</published>
-    <updated>2019-05-22T10:49:12.767Z</updated>
+    <updated>2019-05-22T10:59:35.356Z</updated>
     
     <summary type="html">
     
@@ -24,7 +24,8 @@
       
         
         
-          &lt;h1 id=&quot;Datasets&quot;&gt;&lt;a href=&quot;#Datasets&quot; class=&quot;headerlink&quot; title=&quot;Datasets&quot;&gt;&lt;/a&gt;Datasets&lt;/h1&gt;&lt;table&gt;&lt;br&gt;  &lt;tr&gt;&lt;br&gt;    &lt;th&gt;Name&lt;/th&gt;&lt;br&gt;   
+          &lt;p&gt; XINTAO大神的 &lt;a href=&quot;https://github.com/xinntao&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;XINTAO 大神的 &lt;a
         
       
     
@@ -32,6 +33,8 @@
     
       <category term="SR" scheme="https://it-hao.github.io/categories/SR/"/>
     
+    
+      <category term="dataset" scheme="https://it-hao.github.io/tags/dataset/"/>
     
   </entry>
   
@@ -83,9 +86,9 @@
       <category term="SR" scheme="https://it-hao.github.io/categories/SR/"/>
     
     
-      <category term="pytorch" scheme="https://it-hao.github.io/tags/pytorch/"/>
-    
       <category term="python" scheme="https://it-hao.github.io/tags/python/"/>
+    
+      <category term="pytorch" scheme="https://it-hao.github.io/tags/pytorch/"/>
     
   </entry>
   
@@ -174,9 +177,9 @@
       <category term="SR" scheme="https://it-hao.github.io/categories/SR/"/>
     
     
-      <category term="pytorch" scheme="https://it-hao.github.io/tags/pytorch/"/>
-    
       <category term="python" scheme="https://it-hao.github.io/tags/python/"/>
+    
+      <category term="pytorch" scheme="https://it-hao.github.io/tags/pytorch/"/>
     
   </entry>
   
