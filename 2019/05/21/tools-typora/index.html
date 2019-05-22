@@ -20,7 +20,7 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Typora简单介绍 | 耗子Deng</title>
-    <link rel="icon" type="image/png" href="/pig4.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -46,7 +46,7 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/pig4.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">耗子Deng</span>
                 </a>
@@ -121,7 +121,7 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/pig4.png" class="logo-img circle responsive-img">
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">耗子Deng</div>
         <div class="logo-desc">
@@ -352,7 +352,7 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        238
+                        219
                     </div>
                     
 
@@ -392,15 +392,22 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
 <li>公式快：<code>Ctrl + Shift + M</code></li>
 <li>代码块：<code>Ctrl + Shift + K</code></li>
 </ul>
-<h2 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h2><h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>开头$$+换行键，产生输入区域，输入Tex/LaTex格式的数学公式，代码和效果如下图：<br>$$<br>\mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix}<br>\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>\frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \<br>\frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \<br>\end{vmatrix}<br>$$</p>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre><code>脚注产生的方法[^footnote].
-[^footnote]:这个就是&quot;脚注&quot;
-</code></pre><h2 id="插入表情"><a href="#插入表情" class="headerlink" title="插入表情"></a>插入表情</h2><pre><code>以:开始，然后输入表情的英文单词
+<h2 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h2><h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>开头$$+换行键，产生输入区域，输入Tex/LaTex格式的数学公式，代码和效果如下图：</p>
+<blockquote>
+<p>\Gamma(z) = \int_0^\infty t{z-1}e{-t}dt,. </p>
+</blockquote>
+<p>$$<br> \Gamma(z) = \int_0^\infty t{z-1}e{-t}dt,.<br>$$</p>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre class="line-numbers language-c"><code class="language-c">脚注产生的方法<span class="token punctuation">[</span><span class="token operator">^</span>footnote<span class="token punctuation">]</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token operator">^</span>footnote<span class="token punctuation">]</span><span class="token punctuation">:</span>这个就是<span class="token string">"脚注"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="插入表情"><a href="#插入表情" class="headerlink" title="插入表情"></a>插入表情</h2><pre class="line-numbers language-c"><code class="language-c">以<span class="token punctuation">:</span>开始，然后输入表情的英文单词
 例如：
-:happy
-:sad
-</code></pre><h2 id="生成目录"><a href="#生成目录" class="headerlink" title="生成目录"></a>生成目录</h2><pre><code>[TOC]按住回车
-</code></pre>
+<span class="token punctuation">:</span>happy
+<span class="token punctuation">:</span>sad
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="生成目录"><a href="#生成目录" class="headerlink" title="生成目录"></a>生成目录</h2><pre class="line-numbers language-c"><code class="language-c"><span class="token punctuation">[</span>TOC<span class="token punctuation">]</span>按住回车
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
             </div>
             <hr>
 
@@ -668,6 +675,43 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 耗子Deng<br />'
+            + '作者: <br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -766,6 +810,13 @@ Markdown的语法因不同的解析器或编辑器而异，Typora使用的是Git
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">

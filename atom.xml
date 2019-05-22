@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
-  <updated>2019-05-21T15:45:21.887Z</updated>
+  <updated>2019-05-22T01:16:16.712Z</updated>
   <id>https://it-hao.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -16,7 +16,7 @@
     <link href="https://it-hao.github.io/2019/05/21/tools-typora/"/>
     <id>https://it-hao.github.io/2019/05/21/tools-typora/</id>
     <published>2019-05-21T15:06:13.000Z</published>
-    <updated>2019-05-21T15:45:21.887Z</updated>
+    <updated>2019-05-22T01:16:16.712Z</updated>
     
     <summary type="html">
     
@@ -90,9 +90,9 @@
       <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
     
     
-      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
-    
       <category term="图床" scheme="https://it-hao.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
     
   </entry>
   
