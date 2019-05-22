@@ -315,8 +315,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SR/" target="_blank">
-                                <span class="chip bg-color">SR</span>
+                            <a href="/tags/python/" target="_blank">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                            <a href="/tags/pytorch/" target="_blank">
+                                <span class="chip bg-color">pytorch</span>
                             </a>
                         
                     </div>
@@ -327,12 +331,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/python/" class="post-category" target="_blank">
-                                python
-                            </a>
-                        
-                            <a href="/categories/python/pytorch/" class="post-category" target="_blank">
-                                pytorch
+                            <a href="/categories/SR/" class="post-category" target="_blank">
+                                SR
                             </a>
                         
                     </div>
@@ -373,7 +373,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="针对super-resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。"><a href="#针对super-resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。" class="headerlink" title="针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。"></a>针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token number">1</span>、使用预训练模型生成SR图片：
+                <p>针对super resolution任务中的评价指标，针对pytorch框架和最近常用的EDSR代码，做一个简单的总结。在EDSR代码中，为了测试的准确性，是先将SR图片生成保存起来，然后用matlab代码进行计算，并且是在y通道上进行计算psnr和ssim，但是这样可能会费时间，所以这里直接集成在python代码中，最终计算出来的结果和matlab代码计算出来的结果是一样的。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token number">1</span>、使用预训练模型生成SR图片：
 sr <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>lr<span class="token punctuation">,</span> idx_scale<span class="token punctuation">)</span>
 <span class="token number">2</span>、然后将tensor转化为numpy<span class="token punctuation">:</span>
 visuals <span class="token operator">=</span> utility<span class="token punctuation">.</span>get_current_visual<span class="token punctuation">(</span>lr<span class="token punctuation">,</span> hr<span class="token punctuation">,</span> sr<span class="token punctuation">,</span> self<span class="token punctuation">.</span>args<span class="token punctuation">.</span>rgb_range<span class="token punctuation">)</span>
@@ -915,7 +916,7 @@ psnr<span class="token punctuation">,</span> ssim <span class="token operator">=
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">6.2k</span>
+                <span class="white-color">6.3k</span>
             
 
             
