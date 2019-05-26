@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>耗子Deng</title>
   
-  <subtitle>我的博客</subtitle>
+  <subtitle>Hao Shen</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://it-hao.github.io/"/>
@@ -117,9 +117,9 @@
       <category term="tools" scheme="https://it-hao.github.io/categories/tools/"/>
     
     
-      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
-    
       <category term="图床" scheme="https://it-hao.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -233,9 +233,9 @@
       <category term="算法" scheme="https://it-hao.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="0-1背包" scheme="https://it-hao.github.io/tags/0-1%E8%83%8C%E5%8C%85/"/>
-    
       <category term="c++" scheme="https://it-hao.github.io/tags/c/"/>
+    
+      <category term="0-1背包" scheme="https://it-hao.github.io/tags/0-1%E8%83%8C%E5%8C%85/"/>
     
   </entry>
   
@@ -263,32 +263,6 @@
     
     
       <category term="博客" scheme="https://it-hao.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你好 Hexo</title>
-    <link href="https://it-hao.github.io/2019/01/07/sui-bi-hello-world/"/>
-    <id>https://it-hao.github.io/2019/01/07/sui-bi-hello-world/</id>
-    <published>2019-01-07T15:25:00.000Z</published>
-    <updated>2019-02-19T12:20:51.575Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;欢迎来到&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! 这是我第一篇文章。检查&lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://it-hao.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="hexo" scheme="https://it-hao.github.io/tags/hexo/"/>
     
   </entry>
   
