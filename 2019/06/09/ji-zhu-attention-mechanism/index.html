@@ -385,11 +385,11 @@ it is a p">
 <ul>
 <li>to recalibrate the input feature maps, the generated attention map is normalized through a sigmoid function between a range from 0 to 1, and then used for channel or spatial-wise multiplication with X. </li>
 </ul>
-<h2 id="2-Attention-Mechanism-for-SR"><a href="#2-Attention-Mechanism-for-SR" class="headerlink" title="2. Attention Mechanism for SR"></a>2. Attention Mechanism for SR</h2><p><img src="https://github.com/it-hao/clounding/blob/master/data/attention1.png?raw=true" alt="1560068703400"></p>
+<h2 id="2-Attention-Mechanism-for-SR"><a href="#2-Attention-Mechanism-for-SR" class="headerlink" title="2. Attention Mechanism for SR"></a>2. Attention Mechanism for SR</h2><p><img src="https://github.com/it-hao/clounding/blob/master/data/attention1.png?raw=true" alt="img1"></p>
 <ul>
 <li><p>RCAB </p>
 <p>如上图1中的图所示，只使用了channel attention，来源于论文<a href="https://arxiv.org/pdf/1709.01507.pdf" target="_blank" rel="noopener">SeNet</a>(Squeeze-and-excitation networks )，后来在ECCV2018中第一次用到了SR中，即：<a href="https://arxiv.org/pdf/1807.02758.pdf" target="_blank" rel="noopener">RCAN</a>(Image super-resolution using very deep residual channel attention networks. ) 并且取得了不错的效果，具体的公式如下，不做详细展开。</p>
-<p><img src="https://github.com/it-hao/clounding/blob/master/data/attention2.png?raw=true" alt="1560069102578"></p>
+<p><img src="https://github.com/it-hao/clounding/blob/master/data/attention2.png?raw=true" alt="img2"></p>
 </li>
 <li><p>CBAM</p>
 <p>正如上面所说，RCAN只用到channel attention，但是并没有应用spatial attention，所以，<a href="https://arxiv.org/pdf/1807.06521.pdf" target="_blank" rel="noopener">CBAM</a>就通过CA 模块和SA 模块探索了特征channel和spatial之间的关系。具体如上图2所示。可以看出，这两种注意力机制使用的是串行的机制，先进行channel attention，后面紧接着跟着一个spatial attention模块。</p>
@@ -402,7 +402,7 @@ it is a p">
 <p>具体的解释作者是这样解释的：每一个特征向量的<em>channel</em>针对不同的使用角色都会有不同的作用，例如，有些filter可能提取水平方向的边缘分量，而有些f<em>ilters</em>则是提取垂直方向的边缘分量。从我们SR的方向来考虑的话，<em>channel</em>的重要性因空间的区域位置而决定，例如，针对一些边缘或者复杂的纹理，复杂的<em>filters</em>就很重要，但是另一方面，对于一些几乎没有高层特征的区域，如天空，就没有必要过于关注。</p>
 </li>
 </ul>
-<h2 id="3-Experiment"><a href="#3-Experiment" class="headerlink" title="3. Experiment"></a>3. Experiment</h2><p><img src="https://github.com/it-hao/clounding/blob/master/data/attention3.png?raw=true" alt="1560070601024"></p>
+<h2 id="3-Experiment"><a href="#3-Experiment" class="headerlink" title="3. Experiment"></a>3. Experiment</h2><p><img src="https://github.com/it-hao/clounding/blob/master/data/attention3.png?raw=true" alt="img3"></p>
 <h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4. 代码实现"></a>4. 代码实现</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># RCAB的实现</span>
 <span class="token keyword">class</span> <span class="token class-name">CALayer</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> channel<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
