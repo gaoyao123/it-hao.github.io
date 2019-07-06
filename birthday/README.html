@@ -1,0 +1,91 @@
+<h2 id="birthday-basic"><a href="#birthday-basic" class="headerlink" title="birthday-basic"></a>birthday-basic</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>这是我最开始写的三个静态网页，你可以将其定制之后送给自己的朋友/对象/送完还是朋友的朋友/送完就变成对象的朋友，2333</p>
+<p>因为只是我最开始送人所写的网页。所以会有不少问题，如果在使用过程中发现这些问题请见谅。</p>
+<h3 id="在线预览"><a href="#在线预览" class="headerlink" title="在线预览"></a>在线预览</h3><p><a href="http://119.23.212.211:8080/birthday-basic/">http://119.23.212.211:8080/birthday-basic/</a><br>用户名：123 密码：123</p>
+<h3 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h3><p>如果你具备前端开发的相关经验，那么可以自由地在这个模板上进行相关的修改，相信我当年写的代码能把你气个半死（手动滑稽，我现在自己看了也生气）</p>
+<p>如果你不具备任何前端开发的经验，那么或许可以考虑换个东西送？</p>
+<p>如果你只是简单了解相关知识，那么你可以阅读下面的引导来了解这个模板。</p>
+<h3 id="模板介绍"><a href="#模板介绍" class="headerlink" title="模板介绍"></a>模板介绍</h3><h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p> 在当前目录下，有js/login.js文件：</p>
+<pre><code class="javascript"><span class="comment">//修改此处的123,123即可修改登录的用户名和密码</span>
+<span class="keyword">if</span>(userName==<span class="string">"123"</span> &amp;&amp;  pwd==<span class="string">"123"</span>){
+  event.preventDefault();
+  $(<span class="string">'form'</span>).fadeOut(<span class="number">500</span>);
+  $(<span class="string">'.wrapper'</span>).addClass(<span class="string">'form-success'</span>);
+  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{location.href=<span class="string">"BirthdayCake.html"</span>;},<span class="number">2000</span>);
+}
+</code></pre>
+<h4 id="替换memories页面文字和图片"><a href="#替换memories页面文字和图片" class="headerlink" title="替换memories页面文字和图片"></a>替换memories页面文字和图片</h4><p>以第三屏为例：</p>
+<pre><code class="html"><span class="comment">&lt;!--第三屏--&gt;</span>
+
+<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span>
+    <span class="comment">&lt;!-- 下面两个div分别实现的左边那条轴和那个小球 --&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"timeline"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"timepoint21"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-box21"</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt21"</span>&gt;</span>
+            <span class="comment">&lt;!-- 这里更改日期 --&gt;</span>
+            201X-1X-2X
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt22"</span>&gt;</span>
+          <span class="comment">&lt;!-- 这里更改内容，段落、换行用&lt;p&gt;&lt;/p&gt;包裹起来 --&gt;</span>
+           <span class="tag">&lt;<span class="name">p</span>&gt;</span> XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<span class="tag">&lt;/<span class="name">p</span>&gt;</span>
+           <span class="tag">&lt;<span class="name">p</span>&gt;</span>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<span class="tag">&lt;/<span class="name">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-imgbox21"</span>&gt;</span>
+          <span class="comment">&lt;!-- 这里更改图片，图片请先改好对应的名字并且放到img文件夹下面</span>
+<span class="comment">              如果你不懂css，那么最好就裁剪图片至合适大小为止</span>
+<span class="comment">              如果你会css，那么可以根据class名字去修改对应css的宽度设置--&gt;</span>
+          <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"ly-img21"</span> <span class="attr">src</span>=<span class="string">"img/2014.11.26-1.png"</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-triangle21"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-box22"</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt23"</span>&gt;</span>
+          <span class="comment">&lt;!-- 与上面类似，不再多说 --&gt;</span>
+            201X-1X-1X
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt24"</span>&gt;</span>
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-imgbox22"</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"ly-img22"</span> <span class="attr">src</span>=<span class="string">"img/2014.12.19-1.png"</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-triangle22"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+
+     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-box23"</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt25"</span>&gt;</span>
+            201X-1X-2X
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-txt26"</span>&gt;</span>
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-imgbox23"</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"ly-img23"</span> <span class="attr">src</span>=<span class="string">"img/2014.12.20-1.jpg"</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ly-triangle23"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+<h2 id="如何给别人看"><a href="#如何给别人看" class="headerlink" title="如何给别人看"></a>如何给别人看</h2><ol>
+<li>打成压缩包发给别人  </li>
+<li>部署至云服务器或者虚拟主机  <ol>
+<li>部署云服务器需要拥有一台自己的云服务器。部署方式有很多种，这里推荐两种：  <ul>
+<li>使用Tomcat部署:<br>在服务器下载解压tomcat，解压后打开webapps文件夹，然后新建一个英文名称的文件夹(称为路径名)，下载此项目后将当前目录（注意，只拷贝文件，含有index.html在内的这些html和css，js之类的拷贝到刚才新建的文件夹内，重启tomcat即可。）</li>
+<li>使用nginx部署：<br>方式类似，不扯了，可以自行去百度查。</li>
+</ul>
+</li>
+<li>部署至虚拟主机，在虚拟主机购买商处会有教程</li>
+</ol>
+</li>
+</ol>
+<p>如果需要用域名访问，请先去购买域名，然后按照教程进行解析。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>请使用Google Chrome浏览器！</p>
+<p>没有手机版！</p>
+<h2 id="其它问题"><a href="#其它问题" class="headerlink" title="其它问题"></a>其它问题</h2><p>有问题请发邮件至 <a href="mailto:guoxiaofeng_2015@163.com">guoxiaofeng_2015@163.com</a>,公有问题我会继续更新在readme</p>
+<h2 id="开发计划"><a href="#开发计划" class="headerlink" title="开发计划"></a>开发计划</h2><ol>
+<li>修改Memories页面布局，保证宽屏适应。</li>
+<li>注意浏览器兼容性。</li>
+<li>注意在手机上的表现。</li>
+<li>memories模块动态生成。<br>这些都是有空之后会慢慢做的，欢迎持续关注~</li>
+</ol>
