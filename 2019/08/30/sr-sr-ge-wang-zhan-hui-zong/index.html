@@ -1,0 +1,1643 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SR资料汇总, Java,Python,Computer Vision,Machine Learning,Deep Learning">
+    <meta name="description" content="Awesome-Super-Resolution（in progress…）collect some super-resolution related papers, datasets, metrics and repositories.
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SR资料汇总 | 耗子Deng</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">耗子Deng</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>耗子Deng</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>膜拜大佬</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">耗子Deng</div>
+        <div class="logo-desc">
+            
+            因为万物都不等人,爱是和你并肩的那个人
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                耗子Deng
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                膜拜大佬
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        SR资料汇总
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/SR/" class="post-category" target="_blank">
+                                SR
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-08-30
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        638
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        4 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Awesome-Super-Resolution（in-progress…）"><a href="#Awesome-Super-Resolution（in-progress…）" class="headerlink" title="Awesome-Super-Resolution（in progress…）"></a>Awesome-Super-Resolution（in progress…）</h1><p>collect some super-resolution related papers, datasets, metrics and repositories.</p>
+<p>most of these contents are referenced from <a href="https://github.com/ChaofWang/Awesome-Super-Resolution" target="_blank" rel="noopener">here.</a> Thank you!!!</p>
+<h2 id="1-Important-Repositories"><a href="#1-Important-Repositories" class="headerlink" title="1. Important Repositories"></a>1. Important Repositories</h2><h4 id="1-1-Awesome-paper-list"><a href="#1-1-Awesome-paper-list" class="headerlink" title="1.1 Awesome paper list:"></a>1.1 Awesome paper list:</h4><p><a href="https://paperswithcode.com/task/super-resolution" target="_blank" rel="noopener">Paper with code: Super Resolution</a></p>
+<p><a href="https://github.com/YapengTian/Single-Image-Super-Resolution" target="_blank" rel="noopener">Single-Image-Super-Resolution</a></p>
+<p><a href="https://github.com/huangzehao/Super-Resolution.Benckmark" target="_blank" rel="noopener">Super-Resolution. Benckmark</a></p>
+<p><a href="https://github.com/flyywh/Video-Super-Resolution" target="_blank" rel="noopener">Video-Super-Resolution</a></p>
+<p><a href="https://github.com/LoSealL/VideoSuperResolution" target="_blank" rel="noopener">VideoSuperResolution</a></p>
+<p><a href="https://github.com/ptkin/Awesome-Super-Resolution" target="_blank" rel="noopener">Awesome Super-Resolution</a> </p>
+<h4 id="1-2-Awesome-repos"><a href="#1-2-Awesome-repos" class="headerlink" title="1.2 Awesome repos:"></a>1.2 Awesome repos:</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">repo</th>
+<th style="text-align:center">Framework</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://github.com/thstkdgus35/EDSR-PyTorch" target="_blank" rel="noopener">EDSR-PyTorch</a></td>
+<td style="text-align:center">PyTorch</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/yulunzhang/RCAN" target="_blank" rel="noopener">RCAN-PyTorch</a></td>
+<td style="text-align:center">PyTorch</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/xinntao/BasicSR" target="_blank" rel="noopener">BasicSR</a></td>
+<td style="text-align:center">PyTorch</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/titu1994/Image-Super-Resolution" target="_blank" rel="noopener">Image-Super-Resolution</a></td>
+<td style="text-align:center">Keras</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/idealo/image-super-resolution" target="_blank" rel="noopener">image-super-resolution</a></td>
+<td style="text-align:center">Keras</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/WolframRhodium/Super-Resolution-Zoo" target="_blank" rel="noopener">Super-Resolution-Zoo</a></td>
+<td style="text-align:center">MxNet</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/krasserm/super-resolution" target="_blank" rel="noopener">super-resolution</a></td>
+<td style="text-align:center">Keras</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/alexjc/neural-enhance" target="_blank" rel="noopener">neural-enhance</a></td>
+<td style="text-align:center">Theano</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/david-gpu/srez" target="_blank" rel="noopener">srez</a></td>
+<td style="text-align:center">Tensorflow</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/nagadomi/waifu2x" target="_blank" rel="noopener">waifu2x</a></td>
+<td style="text-align:center">Torch</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/icpm/super-resolution" target="_blank" rel="noopener">Super-resolution</a></td>
+<td style="text-align:center">PyTorch</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/LoSealL/VideoSuperResolution" target="_blank" rel="noopener">VideoSuperResolution</a></td>
+<td style="text-align:center">Tensorflow</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/thangvubk/video-super-resolution" target="_blank" rel="noopener">Video-super-resolution</a></td>
+<td style="text-align:center">PyTorch</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-3-SR-Metrics"><a href="#1-3-SR-Metrics" class="headerlink" title="1.3 SR Metrics"></a>1.3 SR Metrics</h4><p>Note this table is referenced from <a href="https://github.com/ptkin/Awesome-Super-Resolution" target="_blank" rel="noopener">here</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th>Papers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">MS-SSIM</td>
+<td><strong>Multiscale structural similarity for image quality assessment</strong>, <em>Wang, Zhou; Simoncelli, Eero P.; Bovik, Alan C.</em>, <strong>ACSSC 2003</strong>, [<a href="https://ieeexplore.ieee.org/document/1292216" target="_blank" rel="noopener">ACSSC</a>], <code>MS-SSIM</code></td>
+</tr>
+<tr>
+<td style="text-align:left">SSIM</td>
+<td><strong>Image Quality Assessment: From Error Visibility to Structural Similarity</strong>, <em>Wang, Zhou; Bovik, Alan C.; Sheikh, Hamid R.; Simoncelli, Eero P</em>, <strong>TIP 2004</strong>, [<a href="https://ieeexplore.ieee.org/document/1284395" target="_blank" rel="noopener">TIP</a>], <code>SSIM</code></td>
+</tr>
+<tr>
+<td style="text-align:left">IFC</td>
+<td><strong>An information fidelity criterion for image quality assessment using natural scene statistics</strong>, <em>Sheikh, Hamid Rahim; Bovik, Alan Conrad; de Veciana, Gustavo de Veciana</em>, <strong>TIP 2005</strong>, [<a href="https://ieeexplore.ieee.org/document/1532311/" target="_blank" rel="noopener">TIP</a>], <code>IFC</code></td>
+</tr>
+<tr>
+<td style="text-align:left">VIF</td>
+<td><strong>Image information and visual quality</strong>, <em>Sheikh, Hamid Rahim; Bovik, Alan C.</em>, <strong>TIP 2006</strong>, [<a href="https://ieeexplore.ieee.org/document/1576816" target="_blank" rel="noopener">TIP</a>], <code>VIF</code></td>
+</tr>
+<tr>
+<td style="text-align:left">FSIM</td>
+<td><strong>FSIM: A Feature Similarity Index for Image Quality Assessment</strong>, <em>Zhang, Lin; Zhang, Lei; Mou, Xuanqin; Zhang, David</em>, <strong>TIP 2011</strong>, [<a href="http://www4.comp.polyu.edu.hk/~cslzhang/IQA/FSIM/FSIM.htm" target="_blank" rel="noopener">Project</a>], [<a href="https://ieeexplore.ieee.org/document/5705575" target="_blank" rel="noopener">TIP</a>], <code>FSIM</code></td>
+</tr>
+<tr>
+<td style="text-align:left">NIQE</td>
+<td><strong>Making a “Completely Blind” Image Quality Analyzer</strong>, <em>Mittal, Anish; Soundararajan, Rajiv; Bovik, Alan C.</em>, <strong>Signal Processing Letters 2013</strong>, [<a href="https://github.com/csjunxu/Bovik_NIQE_SPL2013" target="_blank" rel="noopener">Matlab*</a>], [<a href="https://ieeexplore.ieee.org/document/6353522" target="_blank" rel="noopener">Signal Processing Letters</a>], <code>NIQE</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Ma</td>
+<td><strong>Learning a no-reference quality metric for single-image super-resolution</strong>, <em>Ma, Chao; Yang, Chih-Yuan; Yang, Xiaokang; Yang, Ming-Hsuan</em>, <strong>CVIU 2017</strong>, [<a href="https://arxiv.org/abs/1612.05890" target="_blank" rel="noopener">arXiv</a>], [<a href="https://www.sciencedirect.com/science/article/pii/S107731421630203X" target="_blank" rel="noopener">CVIU</a>], [<a href="https://github.com/chaoma99/sr-metric" target="_blank" rel="noopener">Matlab*</a>], [<a href="https://sites.google.com/site/chaoma99/sr-metric" target="_blank" rel="noopener">Project</a>], <code>Ma</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-Datasets"><a href="#2-Datasets" class="headerlink" title="2. Datasets"></a>2. Datasets</h2><p>Note this table is referenced from <a href="https://github.com/LoSealL/VideoSuperResolution#link-of-datasets" target="_blank" rel="noopener">here</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Usage</th>
+<th style="text-align:center">Link</th>
+<th style="text-align:center">Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Set5</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://uofi.box.com/shared/static/kfahv87nfe8ax910l85dksyl2q212voc.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"><a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">jbhuang0604</a></td>
+</tr>
+<tr>
+<td style="text-align:center">SET14</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://uofi.box.com/shared/static/igsnfieh4lz68l926l8xbklwsnnk8we9.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"><a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">jbhuang0604</a></td>
+</tr>
+<tr>
+<td style="text-align:center">BSD100</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://uofi.box.com/shared/static/qgctsplb8txrksm9to9x01zfa4m61ngq.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"><a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">jbhuang0604</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Urban100</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://uofi.box.com/shared/static/65upg43jjd0a4cwsiqgl6o6ixube6klm.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"><a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">jbhuang0604</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Manga109</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="http://www.manga109.org/ja/index.html" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">SunHay80</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://uofi.box.com/shared/static/rirohj4773jl7ef752r330rtqw23djt8.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"><a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">jbhuang0604</a></td>
+</tr>
+<tr>
+<td style="text-align:center">BSD300</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/segbench/BSDS300-images.tgz" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">BSD500</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">91-Image</td>
+<td style="text-align:center">Train</td>
+<td style="text-align:center"><a href="http://www.ifp.illinois.edu/~jyang29/codes/ScSR.rar" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center">Yang</td>
+</tr>
+<tr>
+<td style="text-align:center">DIV2K2017</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="https://data.vision.ee.ethz.ch/cvl/DIV2K/" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">NTIRE2017</td>
+</tr>
+<tr>
+<td style="text-align:center">Real SR</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="https://competitions.codalab.org/competitions/21439#participate" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">NTIRE2019</td>
+</tr>
+<tr>
+<td style="text-align:center">Waterloo</td>
+<td style="text-align:center">Train</td>
+<td style="text-align:center"><a href="https://ece.uwaterloo.ca/~k29ma/exploration/" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">VID4</td>
+<td style="text-align:center">Test</td>
+<td style="text-align:center"><a href="https://people.csail.mit.edu/celiu/CVPR2011/videoSR.zip" target="_blank" rel="noopener">download</a></td>
+<td style="text-align:center">4 videos</td>
+</tr>
+<tr>
+<td style="text-align:center">MCL-V</td>
+<td style="text-align:center">Train</td>
+<td style="text-align:center"><a href="http://mcl.usc.edu/mcl-v-database/" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">12 videos</td>
+</tr>
+<tr>
+<td style="text-align:center">GOPRO</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="https://github.com/SeungjunNah/DeepDeblur_release" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">33 videos, deblur</td>
+</tr>
+<tr>
+<td style="text-align:center">CelebA</td>
+<td style="text-align:center">Train</td>
+<td style="text-align:center"><a href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">Human faces</td>
+</tr>
+<tr>
+<td style="text-align:center">Sintel</td>
+<td style="text-align:center">Train/Val</td>
+<td style="text-align:center"><a href="http://sintel.is.tue.mpg.de/downloads" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">Optical flow</td>
+</tr>
+<tr>
+<td style="text-align:center">FlyingChairs</td>
+<td style="text-align:center">Train</td>
+<td style="text-align:center"><a href="https://lmb.informatik.uni-freiburg.de/resources/datasets/FlyingChairs.en.html#flyingchairs" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">Optical flow</td>
+</tr>
+<tr>
+<td style="text-align:center">Vimeo-90k</td>
+<td style="text-align:center">Train/Test</td>
+<td style="text-align:center"><a href="http://toflow.csail.mit.edu/" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">90k HQ videos</td>
+</tr>
+<tr>
+<td style="text-align:center">SR-RAW</td>
+<td style="text-align:center">Train/Test</td>
+<td style="text-align:center"><a href="https://ceciliavision.github.io/project-pages/project-zoom.html" target="_blank" rel="noopener">website</a></td>
+<td style="text-align:center">raw sensor image dataset</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Dataset-collections"><a href="#Dataset-collections" class="headerlink" title="Dataset collections"></a>Dataset collections</h4><p><a href="https://drive.google.com/drive/folders/1-99XFJs_fvQ2wFdxXrnJFcRRyPJYKN0K" target="_blank" rel="noopener">Benckmark and DIV2K</a>: Set5, Set14, B100, Urban100, Manga109, DIV2K2017 include bicubic downsamples with x2,3,4,8</p>
+<p><a href="https://www.kaggle.com/msahebi/super-resolution#SR_testing_datasets.zip" target="_blank" rel="noopener">SR_testing_datasets</a>: Test: Set5, Set14, B100, Urban100, Manga109, Historical; Train: T91,General100, BSDS200</p>
+<h2 id="3-Papers"><a href="#3-Papers" class="headerlink" title="3. Papers"></a>3. Papers</h2><h4 id="3-1-Non-DL-based-approach"><a href="#3-1-Non-DL-based-approach" class="headerlink" title="3.1 Non-DL based approach"></a>3.1 Non-DL based approach</h4><p>SCSR: TIP2010, Jianchao Yang et al.<a href="https://ieeexplore.ieee.org/document/5466111/?arnumber=5466111" target="_blank" rel="noopener">paper</a>, <a href="http://www.ifp.illinois.edu/~jyang29/" target="_blank" rel="noopener">code</a></p>
+<p>ANR: ICCV2013, Radu Timofte et al. <a href="http://www.vision.ee.ethz.ch/~timofter/publications/Timofte-ICCV-2013.pdf" target="_blank" rel="noopener">paper</a>, <a href="http://www.vision.ee.ethz.ch/~timofter/ICCV2013_ID1774_SUPPLEMENTARY/index.html" target="_blank" rel="noopener">code</a></p>
+<p>A+: ACCV 2014, Radu Timofte et al. <a href="http://www.vision.ee.ethz.ch/~timofter/publications/Timofte-ACCV-2014.pdf" target="_blank" rel="noopener">paper</a>, <a href="http://www.vision.ee.ethz.ch/~timofter/ACCV2014_ID820_SUPPLEMENTARY/" target="_blank" rel="noopener">code</a></p>
+<p>IA: CVPR2016, Radu Timofte et al. <a href="http://www.vision.ee.ethz.ch/~timofter/publications/Timofte-CVPR-2016.pdf" target="_blank" rel="noopener">paper</a></p>
+<p>SelfExSR: CVPR2015, Jia-Bin Huang et al. <a href="https://uofi.box.com/shared/static/8llt4ijgc39n3t7ftllx7fpaaqi3yau0.pdf" target="_blank" rel="noopener">paper</a>, <a href="https://github.com/jbhuang0604/SelfExSR" target="_blank" rel="noopener">code</a></p>
+<p>NBSRF: ICCV2015, Jordi Salvador et al. <a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Salvador_Naive_Bayes_Super-Resolution_ICCV_2015_paper.pdf" target="_blank" rel="noopener">paper</a></p>
+<p>RFL: ICCV2015, Samuel Schulter et al <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Schulter_Fast_and_Accurate_2015_CVPR_paper.pdf" target="_blank" rel="noopener">paper</a>, <a href="https://www.tugraz.at/institute/icg/research/team-bischof/samuel-schulter/" target="_blank" rel="noopener">code</a></p>
+<h4 id="3-2-DL-based-approach"><a href="#3-2-DL-based-approach" class="headerlink" title="3.2 DL based approach"></a>3.2 DL based approach</h4><p>Note this table is referenced from <a href="https://github.com/LoSealL/VideoSuperResolution/blob/master/README.md#network-list-and-reference-updating" target="_blank" rel="noopener">here</a></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Published</th>
+<th>Code</th>
+<th>Keywords</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRCNN</td>
+<td><a href="https://arxiv.org/abs/1501.00092" target="_blank" rel="noopener">ECCV14</a></td>
+<td><a href="https://github.com/qobilidop/srcnn" target="_blank" rel="noopener">Keras</a></td>
+<td>CNN</td>
+</tr>
+<tr>
+<td>RAISR</td>
+<td><a href="https://arxiv.org/abs/1606.01299" target="_blank" rel="noopener">arXiv</a></td>
+<td>-</td>
+<td>Google, Pixel 3</td>
+</tr>
+<tr>
+<td>ESPCN</td>
+<td><a href="https://arxiv.org/abs/1609.05158" target="_blank" rel="noopener">CVPR16</a></td>
+<td><a href="https://github.com/qobilidop/srcnn" target="_blank" rel="noopener">Keras</a></td>
+<td>Real time/SISR/<strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>VDSR</td>
+<td><a href="https://arxiv.org/abs/1511.04587" target="_blank" rel="noopener">CVPR16</a></td>
+<td><a href="http://cv.snu.ac.kr/research/VDSR/" target="_blank" rel="noopener">Matlab</a></td>
+<td>Deep, Residual</td>
+</tr>
+<tr>
+<td>DRCN</td>
+<td><a href="https://arxiv.org/abs/1511.04491" target="_blank" rel="noopener">CVPR16</a></td>
+<td><a href="http://cv.snu.ac.kr/research/DRCN/" target="_blank" rel="noopener">Matlab</a></td>
+<td>Recurrent</td>
+</tr>
+<tr>
+<td>DRRN</td>
+<td><a href="http://cvlab.cse.msu.edu/pdfs/Tai_Yang_Liu_CVPR2017.pdf" target="_blank" rel="noopener">CVPR17</a></td>
+<td><a href="https://github.com/tyshiwo/DRRN_CVPR17" target="_blank" rel="noopener">Caffe</a>, <a href="https://github.com/jt827859032/DRRN-pytorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Recurrent</td>
+</tr>
+<tr>
+<td>LapSRN</td>
+<td><a href="http://vllab.ucmerced.edu/wlai24/LapSRN/" target="_blank" rel="noopener">CVPR17</a></td>
+<td><a href="https://github.com/phoenix104104/LapSRN" target="_blank" rel="noopener">Matlab</a></td>
+<td>Huber loss</td>
+</tr>
+<tr>
+<td>IRCNN</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Zhang_Learning_Deep_CNN_CVPR_2017_paper.pdf" target="_blank" rel="noopener">CVPR17</a></td>
+<td><a href="https://github.com/cszn/IRCNN" target="_blank" rel="noopener">Matlab</a></td>
+<td></td>
+</tr>
+<tr>
+<td>EDSR</td>
+<td><a href="https://arxiv.org/abs/1707.02921" target="_blank" rel="noopener">CVPR17</a></td>
+<td><a href="https://github.com/thstkdgus35/EDSR-PyTorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>NTIRE17 Champion</td>
+</tr>
+<tr>
+<td>BTSRN</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Fan_Balanced_Two-Stage_Residual_CVPR_2017_paper.pdf" target="_blank" rel="noopener">CVPR17</a></td>
+<td>-</td>
+<td>NTIRE17</td>
+</tr>
+<tr>
+<td>SelNet</td>
+<td><a href="https://ieeexplore.ieee.org/document/8014887" target="_blank" rel="noopener">CVPR17</a></td>
+<td>-</td>
+<td>NTIRE17</td>
+</tr>
+<tr>
+<td>TLSR</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Xu_Fast_and_Accurate_CVPR_2017_paper.pdf" target="_blank" rel="noopener">CVPR17</a></td>
+<td>-</td>
+<td>NTIRE17</td>
+</tr>
+<tr>
+<td>SRGAN</td>
+<td><a href="https://arxiv.org/abs/1609.04802" target="_blank" rel="noopener">CVPR17</a></td>
+<td><a href="https://github.com/tensorlayer/srgan" target="_blank" rel="noopener">Tensorflow</a></td>
+<td>1st proposed GAN</td>
+</tr>
+<tr>
+<td>VESPCN</td>
+<td><a href="https://arxiv.org/abs/1611.05250" target="_blank" rel="noopener">CVPR17</a></td>
+<td>-</td>
+<td><strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>MemNet</td>
+<td><a href="https://arxiv.org/abs/1708.02209" target="_blank" rel="noopener">ICCV17</a></td>
+<td><a href="https://github.com/tyshiwo/MemNet" target="_blank" rel="noopener">Caffe</a></td>
+<td>Dense &amp;&amp; Recurrent</td>
+</tr>
+<tr>
+<td>SRDenseNet</td>
+<td><a href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Tong_Image_Super-Resolution_Using_ICCV_2017_paper.pdf" target="_blank" rel="noopener">ICCV17</a></td>
+<td>-, <a href="https://github.com/wxywhu/SRDenseNet-pytorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Dense</td>
+</tr>
+<tr>
+<td>SPMC</td>
+<td><a href="https://arxiv.org/abs/1704.02738" target="_blank" rel="noopener">ICCV17</a></td>
+<td><a href="https://github.com/jiangsutx/SPMC_VideoSR" target="_blank" rel="noopener">Tensorflow</a></td>
+<td><strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>EnhanceNet</td>
+<td><a href="https://arxiv.org/abs/1612.07919" target="_blank" rel="noopener">ICCV17</a></td>
+<td><a href="https://github.com/msmsajjadi/EnhanceNet-Code" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>Perceptual Loss</td>
+</tr>
+<tr>
+<td>PRSR</td>
+<td><a href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Dahl_Pixel_Recursive_Super_ICCV_2017_paper.pdf" target="_blank" rel="noopener">ICCV17</a></td>
+<td><a href="https://github.com/nilboy/pixel-recursive-super-resolution" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>an extension of PixelCNN</td>
+</tr>
+<tr>
+<td>AffGAN</td>
+<td><a href="https://arxiv.org/pdf/1610.04490.pdf" target="_blank" rel="noopener">ICLR17</a></td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>MS-LapSRN</td>
+<td><a href="https://ieeexplore.ieee.org/document/8434354" target="_blank" rel="noopener">TPAMI18</a></td>
+<td><a href="https://github.com/phoenix104104/LapSRN" target="_blank" rel="noopener">Matlab</a></td>
+<td>Fast LapSRN</td>
+</tr>
+<tr>
+<td>DCSCN</td>
+<td><a href="https://arxiv.org/abs/1707.05425" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/jiny2001/dcscn-super-resolution" target="_blank" rel="noopener">Tensorflow</a></td>
+<td></td>
+</tr>
+<tr>
+<td>IDN</td>
+<td><a href="https://arxiv.org/abs/1803.09454" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/Zheng222/IDN-Caffe" target="_blank" rel="noopener">Caffe</a></td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>DSRN</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Han_Image_Super-Resolution_via_CVPR_2018_paper.pdf" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/WeiHan3/dsrn/tree/db21d57dfab57de3608f0372e749c6488b6b305d" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>Dual state &amp;&amp; Recurrent</td>
+</tr>
+<tr>
+<td>RDN</td>
+<td><a href="https://arxiv.org/abs/1802.08797" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/yulunzhang/RDN" target="_blank" rel="noopener">Torch</a></td>
+<td>Deep &amp;&amp; BI-BD-DN &amp;&amp; Dense</td>
+</tr>
+<tr>
+<td>SRMD</td>
+<td><a href="https://arxiv.org/abs/1712.06116" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/cszn/SRMD" target="_blank" rel="noopener">Matlab</a></td>
+<td>Denoise/Deblur/SR</td>
+</tr>
+<tr>
+<td>xUnit</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Kligvasser_xUnit_Learning_a_CVPR_2018_paper.pdf" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/kligvasser/xUnit" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Spatial Activation Function</td>
+</tr>
+<tr>
+<td>DBPN</td>
+<td><a href="https://arxiv.org/abs/1803.02735" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/alterzero/DBPN-Pytorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>NTIRE18 Champion</td>
+</tr>
+<tr>
+<td>WDSR</td>
+<td><a href="https://arxiv.org/abs/1808.08718" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/JiahuiYu/wdsr_ntire2018" target="_blank" rel="noopener">PyTorch</a>，<a href="https://github.com/ychfan/tf_estimator_barebone/blob/master/docs/super_resolution.md" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>NTIRE18 Champion</td>
+</tr>
+<tr>
+<td>ProSRN</td>
+<td><a href="https://arxiv.org/abs/1804.02900" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/fperazzi/proSR" target="_blank" rel="noopener">PyTorch</a></td>
+<td>NTIRE18  &amp;&amp; Progressive</td>
+</tr>
+<tr>
+<td>ZSSR</td>
+<td><a href="http://www.wisdom.weizmann.ac.il/~vision/zssr/" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/assafshocher/ZSSR" target="_blank" rel="noopener">Tensorflow</a></td>
+<td>Zero-shot</td>
+</tr>
+<tr>
+<td>FRVSR</td>
+<td><a href="https://arxiv.org/abs/1801.04590" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/msmsajjadi/FRVSR" target="_blank" rel="noopener">PDF</a></td>
+<td><strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>DUF</td>
+<td><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Jo_Deep_Video_Super-Resolution_CVPR_2018_paper.pdf" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/yhjo09/VSR-DUF" target="_blank" rel="noopener">Tensorflow</a></td>
+<td><strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>TDAN</td>
+<td><a href="https://arxiv.org/pdf/1812.02898.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td>-</td>
+<td><strong>VideoSR</strong> &amp;&amp; Deformable Align</td>
+</tr>
+<tr>
+<td>SFTGAN</td>
+<td><a href="https://arxiv.org/abs/1804.02815" target="_blank" rel="noopener">CVPR18</a></td>
+<td><a href="https://github.com/xinntao/SFTGAN" target="_blank" rel="noopener">PyTorch</a></td>
+<td></td>
+</tr>
+<tr>
+<td>CARN</td>
+<td><a href="https://arxiv.org/abs/1803.08664" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/nmhkahn/CARN-pytorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Lightweight</td>
+</tr>
+<tr>
+<td>RCAN</td>
+<td><a href="https://arxiv.org/abs/1807.02758" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/yulunzhang/RCAN" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Deep &amp;&amp; BI-BD-DN &amp;&amp; Channel-wise Attention</td>
+</tr>
+<tr>
+<td>MSRN</td>
+<td><a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Juncheng_Li_Multi-scale_Residual_Network_ECCV_2018_paper.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/MIVRC/MSRN-PyTorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Multi-scale</td>
+</tr>
+<tr>
+<td>SRFeat</td>
+<td><a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Seong-Jin_Park_SRFeat_Single_Image_ECCV_2018_paper.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/HyeongseokSon1/SRFeat" target="_blank" rel="noopener">Tensorflow</a></td>
+<td>GAN</td>
+</tr>
+<tr>
+<td>TSRN</td>
+<td><a href="https://arxiv.org/pdf/1808.00043.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/waleedgondal/Texture-based-Super-Resolution-Network" target="_blank" rel="noopener">Pytorch</a></td>
+<td></td>
+</tr>
+<tr>
+<td>ESRGAN</td>
+<td><a href="https://arxiv.org/abs/1809.00219" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/xinntao/ESRGAN" target="_blank" rel="noopener">PyTorch</a></td>
+<td>PRIM18 region 3 Champion</td>
+</tr>
+<tr>
+<td>EPSR</td>
+<td><a href="http://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Vasu_Analyzing_Perception-Distortion_Tradeoff_using_Enhanced_Perceptual_Super-resolution_Network_ECCVW_2018_paper.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/subeeshvasu/2018_subeesh_epsr_eccvw" target="_blank" rel="noopener">PyTorch</a></td>
+<td>PRIM18 region 1 Champion</td>
+</tr>
+<tr>
+<td>PESR</td>
+<td><a href="http://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Vu_Perception-Enhanced_Image_Super-Resolution_via_Relativistic_Generative_Adversarial_Networks_ECCVW_2018_paper.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/thangvubk/PESR" target="_blank" rel="noopener">PyTorch</a></td>
+<td>ECCV18 workshop</td>
+</tr>
+<tr>
+<td>FEQE</td>
+<td><a href="http://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Vu_Fast_and_Efficient_Image_Quality_Enhancement_via_Desubpixel_Convolutional_Neural_ECCVW_2018_paper.pdf" target="_blank" rel="noopener">ECCV18</a></td>
+<td><a href="https://github.com/thangvubk/FEQE" target="_blank" rel="noopener">Tensorflow</a></td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>NLRN</td>
+<td><a href="https://papers.nips.cc/paper/7439-non-local-recurrent-network-for-image-restoration.pdf" target="_blank" rel="noopener">NIPS18</a></td>
+<td><a href="https://github.com/Ding-Liu/NLRN" target="_blank" rel="noopener">Tensorflow</a></td>
+<td>Non-local, Recurrent</td>
+</tr>
+<tr>
+<td>SRCliqueNet</td>
+<td><a href="https://arxiv.org/abs/1809.04508" target="_blank" rel="noopener">NIPS18</a></td>
+<td>-</td>
+<td>Wavelet</td>
+</tr>
+<tr>
+<td>CBDNet</td>
+<td><a href="https://arxiv.org/abs/1807.04686" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/GuoShi28/CBDNet" target="_blank" rel="noopener">Matlab</a></td>
+<td>Blind-denoise</td>
+</tr>
+<tr>
+<td>TecoGAN</td>
+<td><a href="http://arxiv.org/abs/1811.09393" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/thunil/TecoGAN" target="_blank" rel="noopener">Tensorflow</a></td>
+<td><strong>VideoSR</strong> GAN</td>
+</tr>
+<tr>
+<td>RBPN</td>
+<td><a href="https://arxiv.org/abs/1903.10128" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/alterzero/RBPN-PyTorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td><strong>VideoSR</strong></td>
+</tr>
+<tr>
+<td>SRFBN</td>
+<td><a href="https://arxiv.org/abs/1903.09814" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/Paper99/SRFBN_CVPR19" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Feedback &amp;&amp; Recurrent</td>
+</tr>
+<tr>
+<td>AdaFM</td>
+<td><a href="https://arxiv.org/pdf/1904.08118.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/hejingwenhejingwen/AdaFM" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Adaptive Feature Modification Layers</td>
+</tr>
+<tr>
+<td>MoreMNAS</td>
+<td><a href="https://arxiv.org/pdf/1901.01074.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td>-</td>
+<td>Lightweight，NAS</td>
+</tr>
+<tr>
+<td>FALSR</td>
+<td><a href="https://arxiv.org/pdf/1901.07261.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://ieeexplore.ieee.org/document/8434354" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>Lightweight，NAS</td>
+</tr>
+<tr>
+<td>Meta-SR</td>
+<td><a href="https://arxiv.org/pdf/1903.00875.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/XuecaiHu/Meta-SR-Pytorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Arbitrary Magnification</td>
+</tr>
+<tr>
+<td>AWSRN</td>
+<td><a href="https://arxiv.org/abs/1904.02358" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/ChaofWang/AWSRN" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Lightweight</td>
+</tr>
+<tr>
+<td>OISR</td>
+<td><a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/He_ODE-Inspired_Network_Design_for_Single_Image_Super-Resolution_CVPR_2019_paper.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/HolmesShuan/OISR-PyTorch" target="_blank" rel="noopener">PyTorch</a></td>
+<td>ODE-inspired Network</td>
+</tr>
+<tr>
+<td>DPSR</td>
+<td><a href="https://arxiv.org/pdf/1903.12529.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/cszn/DPSR" target="_blank" rel="noopener">PyTorch</a></td>
+<td></td>
+</tr>
+<tr>
+<td>DNI</td>
+<td><a href="https://arxiv.org/pdf/1811.10515.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/xinntao/DNI" target="_blank" rel="noopener">PyTorch</a></td>
+<td></td>
+</tr>
+<tr>
+<td>MAANet</td>
+<td><a href="https://arxiv.org/abs/1904.06252" target="_blank" rel="noopener">arXiv</a></td>
+<td></td>
+<td>Multi-view Aware Attention</td>
+</tr>
+<tr>
+<td>RNAN</td>
+<td><a href="https://openreview.net/pdf?id=HkeGhoA5FX" target="_blank" rel="noopener">ICLR19</a></td>
+<td><a href="https://github.com/yulunzhang/RNAN" target="_blank" rel="noopener">PyTorch</a></td>
+<td>Residual Non-local Attention</td>
+</tr>
+<tr>
+<td>FSTRN</td>
+<td><a href="https://arxiv.org/pdf/1904.02870.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td>-</td>
+<td><strong>VideoSR</strong>, fast spatio-temporal residual block</td>
+</tr>
+<tr>
+<td>MsDNN</td>
+<td><a href="https://arxiv.org/pdf/1904.10698.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/shangqigao/gsq-image-SR" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>NTIRE19  real SR  21th place</td>
+</tr>
+<tr>
+<td>SAN</td>
+<td><a href="http://www4.comp.polyu.edu.hk/~cslzhang/paper/CVPR19-SAN.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/daitao/SAN" target="_blank" rel="noopener">Pytorch</a></td>
+<td>Second-order Attention, cvpr19 oral</td>
+</tr>
+<tr>
+<td>EDVR</td>
+<td><a href="https://arxiv.org/pdf/1905.02716.pdf" target="_blank" rel="noopener">CVPRW19</a></td>
+<td><a href="https://github.com/xinntao/EDVR" target="_blank" rel="noopener">Pytorch</a></td>
+<td><strong>Video</strong>, NTIRE19 video restoration and enhancement champions</td>
+</tr>
+<tr>
+<td>Ensemble for VSR</td>
+<td><a href="https://arxiv.org/pdf/1905.02462.pdf" target="_blank" rel="noopener">CVPRW19</a></td>
+<td>-</td>
+<td><strong>VideoSR</strong>, NTIRE19 video SR 2nd place</td>
+</tr>
+<tr>
+<td>TENet</td>
+<td><a href="https://arxiv.org/pdf/1905.02538.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/guochengqian/TENet" target="_blank" rel="noopener">Pytorch</a></td>
+<td>a Joint Solution for Demosaicking, Denoising and Super-Resolution</td>
+</tr>
+<tr>
+<td>MCAN</td>
+<td><a href="https://arxiv.org/pdf/1903.07949.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/macn3388/MCAN" target="_blank" rel="noopener">Pytorch</a></td>
+<td>Matrix-in-matrix CAN, Lightweight</td>
+</tr>
+<tr>
+<td>IKC&amp;SFTMD</td>
+<td><a href="https://arxiv.org/pdf/1904.03377.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td>-</td>
+<td>Blind Super-Resolution</td>
+</tr>
+<tr>
+<td>SRNTT</td>
+<td><a href="https://arxiv.org/pdf/1903.00834.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://github.com/ZZUTK/SRNTT" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>Neural Texture Transfer</td>
+</tr>
+<tr>
+<td>RawSR</td>
+<td><a href="https://arxiv.org/pdf/1905.12156.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td><a href="https://drive.google.com/file/d/1yvCceNAgt4UsxZXahPFBkuL1JXyfgr8B/view" target="_blank" rel="noopener">TensorFlow</a></td>
+<td>Real Scene Super-Resolution, Raw Images</td>
+</tr>
+<tr>
+<td>resLF</td>
+<td><a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Zhang_Residual_Networks_for_Light_Field_Image_Super-Resolution_CVPR_2019_paper.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td></td>
+<td>Light field</td>
+</tr>
+<tr>
+<td>CameraSR</td>
+<td><a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Chen_Camera_Lens_Super-Resolution_CVPR_2019_paper.pdf" target="_blank" rel="noopener">CVPR19</a></td>
+<td></td>
+<td>realistic image SR</td>
+</tr>
+<tr>
+<td>ORDSR</td>
+<td><a href="https://arxiv.org/pdf/1904.10082.pdf" target="_blank" rel="noopener">TIP</a></td>
+<td><a href="https://github.com/tT0NG/ORDSR" target="_blank" rel="noopener">model</a></td>
+<td>DCT domain SR</td>
+</tr>
+<tr>
+<td>U-Net</td>
+<td><a href="https://arxiv.org/pdf/1906.04809.pdf" target="_blank" rel="noopener">CVPRW19</a></td>
+<td></td>
+<td>NTIRE19  real SR  2nd place, U-Net,MixUp,Synthesis</td>
+</tr>
+<tr>
+<td>DRLN</td>
+<td><a href="https://arxiv.org/pdf/1906.12021.pdf" target="_blank" rel="noopener">arxiv</a></td>
+<td></td>
+<td>Densely Residual Laplacian Super-Resolution</td>
+</tr>
+<tr>
+<td>EDRN</td>
+<td><a href="http://openaccess.thecvf.com/content_CVPRW_2019/papers/NTIRE/Cheng_Encoder-Decoder_Residual_Network_for_Real_Super-Resolution_CVPRW_2019_paper.pdf" target="_blank" rel="noopener">CVPRW19</a></td>
+<td><a href="https://github.com/yyknight/NTIRE2019_EDRN" target="_blank" rel="noopener">Pytorch</a></td>
+<td>NTIRE19  real SR  9th places</td>
+</tr>
+<tr>
+<td>FC2N</td>
+<td><a href="https://arxiv.org/pdf/1907.03221.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td></td>
+<td>Fully Channel-Concatenated</td>
+</tr>
+<tr>
+<td>GMFN</td>
+<td><a href="https://arxiv.org/pdf/1907.04253.pdf" target="_blank" rel="noopener">BMVC2019</a></td>
+<td><a href="https://github.com/liqilei/GMFN" target="_blank" rel="noopener">Pytorch</a></td>
+<td>Gated Multiple Feedback</td>
+</tr>
+<tr>
+<td>CNN&amp;TV-TV Minimization</td>
+<td><a href="https://arxiv.org/pdf/1907.05380.pdf" target="_blank" rel="noopener">BMVC2019</a></td>
+<td></td>
+<td>TV-TV Minimization</td>
+</tr>
+<tr>
+<td>HRAN</td>
+<td><a href="https://arxiv.org/pdf/1907.05514.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td></td>
+<td>Hybrid Residual Attention Network</td>
+</tr>
+<tr>
+<td>PPON</td>
+<td><a href="https://arxiv.org/pdf/1907.10399.pdf" target="_blank" rel="noopener">arXiv</a></td>
+<td><a href="https://github.com/Zheng222/PPON" target="_blank" rel="noopener">code</a></td>
+<td>Progressive Perception-Oriented Network</td>
+</tr>
+<tr>
+<td>SROBB</td>
+<td><a href="https://arxiv.org/pdf/1908.07222.pdf" target="_blank" rel="noopener">ICCV19</a></td>
+<td></td>
+<td>Targeted Perceptual Loss</td>
+</tr>
+<tr>
+<td>RankSRGAN</td>
+<td><a href="https://arxiv.org/pdf/1908.06382.pdf" target="_blank" rel="noopener">ICCV19</a></td>
+<td><a href="https://github.com/WenlongZhang0724/RankSRGAN" target="_blank" rel="noopener">PyTorch</a></td>
+<td>oral, rank-content loss</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-3-Super-Resolution-survey："><a href="#3-3-Super-Resolution-survey：" class="headerlink" title="3.3 Super Resolution survey："></a>3.3 Super Resolution survey：</h4><p>[1] Wenming Yang, Xuechen Zhang, Yapeng Tian, Wei Wang, Jing-Hao Xue. Deep Learning for Single Image Super-Resolution: A Brief Review. arxiv, 2018. <a href="https://arxiv.org/pdf/1808.03344.pdf" target="_blank" rel="noopener">paper</a></p>
+<p>[2]Saeed Anwar, Salman Khan, Nick Barnes. A Deep Journey into Super-resolution: A survey. arxiv, 2019.<a href="https://arxiv.org/pdf/1904.07523.pdf" target="_blank" rel="noopener">paper</a></p>
+<p>[3]Wang, Z., Chen, J., &amp; Hoi, S. C. (2019). Deep learning for image super-resolution: A survey. arXiv preprint arXiv:1902.06068.<a href="https://arxiv.org/abs/1902.06068" target="_blank" rel="noopener">paper</a></p>
+<h4 id="3-4-NTIRE"><a href="#3-4-NTIRE" class="headerlink" title="3.4 NTIRE:"></a>3.4 NTIRE:</h4><p>NTIRE17 <a href="http://openaccess.thecvf.com/CVPR2017_workshops/CVPR2017_W12.py" target="_blank" rel="noopener">papers</a></p>
+<p>NTIRE18 <a href="http://openaccess.thecvf.com/CVPR2018_workshops/CVPR2018_W13.py" target="_blank" rel="noopener">papers</a></p>
+<p>NTIRE19 <a href="http://openaccess.thecvf.com/CVPR2019_workshops/CVPR2019_NTIRE.py" target="_blank" rel="noopener">papers</a></p>
+<h2 id="4-Excellent-personal-website"><a href="#4-Excellent-personal-website" class="headerlink" title="4. Excellent  personal website:"></a>4. Excellent  personal website:</h2><p><a href="https://manricheon.github.io/" target="_blank" rel="noopener">Manri Cheon</a></p>
+<p><a href="http://yulunzhang.com/" target="_blank" rel="noopener">Yulun Zhang</a></p>
+<p><a href="http://yapengtian.org/" target="_blank" rel="noopener">Yapeng Tian</a></p>
+<p><a href="https://xinntao.github.io/" target="_blank" rel="noopener">Xintao Wang</a></p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">大爷，赏点呗~</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/08/30/sr-sr-ge-wang-zhan-hui-zong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="SR资料汇总">
+                        
+                        <span class="card-title">SR资料汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是一个关于与super-resolution相关的各种资料的汇总，包括paper，github，websites...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SR/" class="post-category" target="_blank">
+                                    SR
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/06/09/ji-zhu-attention-mechanism/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Attention Mechanism">
+                        
+                        <span class="card-title">Attention Mechanism</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            当我们人在看一样东西的时候，我们当前时刻关注的一定是我们当前正在看的这样东西的某一地方，换句话说，当我们目光移到别处时，注意力随着目光的移动也在转移，这意味着，当人们注意到某个目标或某个场景时，该目标内部以及该场景内每一处空间位置上的注意力分布是不一样的。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-06-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/技术/" class="post-category" target="_blank">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pytorch/" target="_blank">
+                        <span class="chip bg-color">pytorch</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 耗子Deng<br />'
+            + '作者: <br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://it-hao.github.io/" target="_blank">The Answer</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">8.9k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/it-hao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/p/1005055304098823/home?from=page_100505&amp;mod=TAB#place" class="tooltipped" target="_blank" data-tooltip="微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+   <a href="https://blog.csdn.net/HaoTheAnswer" class="tooltipped" target="_blank" data-tooltip="访问我的CSDN" data-position="top" data-delay="50">
+        <i class="fa fa-gratipay"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1622587970" class="tooltipped" data-tooltip="QQ联系我: 1622587970" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
